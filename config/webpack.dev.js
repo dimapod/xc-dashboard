@@ -18,7 +18,7 @@ const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = webpackMerge(commonConfig.metadata, {
   host: 'localhost',
-  port: 3000,
+  port: 8000,
   ENV: ENV,
   HMR: HMR
 });
@@ -135,6 +135,10 @@ module.exports = webpackMerge(commonConfig, {
    * See: https://webpack.github.io/docs/webpack-dev-server.html
    */
   devServer: {
+    proxy: {
+      "/api/*" : "http://localhost:8001" // <- backend
+    },
+    
     port: METADATA.port,
     host: METADATA.host,
     historyApiFallback: true,
