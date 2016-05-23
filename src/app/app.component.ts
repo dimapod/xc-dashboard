@@ -3,10 +3,6 @@ import {Home} from './home';
 import {UserService} from "./api/user.service";
 import {$WebSocket} from 'angular2-websocket/angular2-websocket'
 
-/*
- * App Component
- * Top Level Component
- */
 @Component({
   selector: 'app',
   pipes: [],
@@ -36,24 +32,30 @@ import {$WebSocket} from 'angular2-websocket/angular2-websocket'
 })
 export class App {
   name = 'Angular 2 Webpack Starter';
-  
+
   ws:$WebSocket;
 
   users:any = [];
   wsData:any = [];
-
+  errorMessage:any;
 
   constructor(public userService:UserService) {
     this.ws = new $WebSocket("ws://localhost:8001");
   }
 
   ngOnInit() {
-    console.log('Initial App State', this.appState.state);
+    console.log('ngOnInit');
+
+    this.ws.onOpen(event => {
+      console.log('onOpen: ', event);
+    });
 
     this.ws.onMessage(event => {
-      console.log('message: ', event);
+      console.log('onMessage: ', event);
       this.wsData.push(event.data);
     }, {});
+
+    this.ws.connect();
   }
 
   onClick() {
