@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation} from "@angular/core";
-import {Home} from './home';
+import {Home} from "./home";
 import {UserService} from "./api/user.service";
-import {$WebSocket} from 'angular2-websocket/angular2-websocket'
+import {$WebSocket} from "angular2-websocket/angular2-websocket";
 
 @Component({
   selector: 'app',
@@ -9,6 +9,8 @@ import {$WebSocket} from 'angular2-websocket/angular2-websocket'
   template: `
     <div>{{ name }}</div>
     <home></home>
+    <child #child1></child>
+    <child #child2></child>
     
     <h2>Users</h2>
     <button (click)="onClick()">API Test</button>
