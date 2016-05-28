@@ -4,10 +4,6 @@ import {ENV_PROVIDERS} from './platform/environment';
 
 import {App, APP_PROVIDERS} from './app';
 
-/*
- * Bootstrap our Angular app with a top level component `App` and inject
- * our Services and Providers into Angular's dependency injection
- */
 export function main(initialHmrState?: any): Promise<any> {
 
   return bootstrap(App, [
@@ -20,10 +16,6 @@ export function main(initialHmrState?: any): Promise<any> {
   .catch(err => console.error(err));
 
 }
-
-
-
-
 
 /*
  * Vendors

@@ -1,5 +1,5 @@
+import * as io from 'socket.io-client';
 import Socket = SocketIOClient.Socket;
-
 
 export class SocketService {
 

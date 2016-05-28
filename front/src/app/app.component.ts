@@ -2,27 +2,24 @@ import {Component, ViewEncapsulation} from "@angular/core";
 import {Home} from "./home";
 import {UserService} from "./api/user.service";
 import {SocketService} from "./api/socket.service";
-import Socket = SocketIOClient.Socket;
 
 @Component({
   selector: 'app',
   pipes: [],
   template: `
-    <div>{{ name }}</div>
+    <h2>Component Test</h2>
     <home></home>
-    <child #child1></child>
-    <child #child2></child>
     
-    <h2>Users</h2>
-    <button (click)="onClick()">API Test</button>
+    <h2>API Test</h2>
+    <button (click)="onClick()">Http Get users from server</button>
     <div *ngFor="let user of users">Name: {{ user.name }} - age: {{ user.age }} - now: {{ user.now }}</div>
     
-    <h2>WS Events</h2>
-    <button (click)="wsTest()">WS Test</button>
-    <div *ngFor="let ws of wsData">From WebSocket: {{ ws }}</div>
+    <h2>Socket.io Test</h2>
+    <div *ngFor="let message of wsData">From Socket.io: {{ message }}</div>
+    <button (click)="wsTest()">Send message to server</button>
   `,
-  providers: [ UserService, SocketService],
-  directives: [ Home ],
+  providers: [UserService, SocketService],
+  directives: [Home],
   encapsulation: ViewEncapsulation.None,
   styles: [
     require('normalize.css'),
@@ -39,9 +36,6 @@ export class App {
   users:any = [];
   wsData:any = [];
   errorMessage:any;
-
-  socket:Socket;
-
 
   constructor(public userService:UserService, public socketService:SocketService) {
   }
