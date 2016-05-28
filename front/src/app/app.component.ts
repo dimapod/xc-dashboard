@@ -1,7 +1,8 @@
 import {Component, ViewEncapsulation} from "@angular/core";
 import {Home} from "./home";
 import {UserService} from "./api/user.service";
-import {$WebSocket} from "angular2-websocket/angular2-websocket";
+import {SocketService} from "./api/socket.service";
+import Socket = SocketIOClient.Socket;
 
 @Component({
   selector: 'app',
@@ -20,7 +21,7 @@ import {$WebSocket} from "angular2-websocket/angular2-websocket";
     <button (click)="wsTest()">WS Test</button>
     <div *ngFor="let ws of wsData">From WebSocket: {{ ws }}</div>
   `,
-  providers: [ UserService ],
+  providers: [ UserService, SocketService],
   directives: [ Home ],
   encapsulation: ViewEncapsulation.None,
   styles: [
@@ -35,29 +36,19 @@ import {$WebSocket} from "angular2-websocket/angular2-websocket";
 export class App {
   name = 'Angular 2 Webpack Starter';
 
-  ws:$WebSocket;
-
   users:any = [];
   wsData:any = [];
   errorMessage:any;
 
-  constructor(public userService:UserService) {
-    this.ws = new $WebSocket("ws://localhost:8001");
+  socket:Socket;
+
+
+  constructor(public userService:UserService, public socketService:SocketService) {
   }
 
   ngOnInit() {
-    console.log('ngOnInit');
-
-    this.ws.onOpen(event => {
-      console.log('onOpen: ', event);
-    });
-
-    this.ws.onMessage(event => {
-      console.log('onMessage: ', event);
-      this.wsData.push(event.data);
-    }, {});
-
-    this.ws.connect();
+    console.log('ngOnInit')
+    this.socketService.initialiazeReciever(this.wsData);
   }
 
   onClick() {
@@ -70,7 +61,7 @@ export class App {
   }
 
   wsTest() {
-    this.ws.send('Hello from Angular2');
+    this.socketService.sendData('Hello Angular');
   }
 
 }

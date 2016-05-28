@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var api = require('./routes/api');
+var rabbitHandler = require('./services/rabbit-message-handler');
 
 var app = express();
 

@@ -1,0 +1,34 @@
+var queueName = 'test';
+var user = process.env.RABBIT_USER || 'root';
+var pwd = process.env.RABBIT_PASSWORD || 'root';
+var host = process.env.RABBIT_HOST || '192.168.99.101';
+var rabbitUrl = 'amqp://'+user+':'+pwd+'@'+host;
+// var open = require('amqplib').connect('amqp://root:root@192.168.99.101');
+var open = require('amqplib').connect(rabbitUrl);
+
+module.exports = function (webSocket) {
+// Consumer
+  open.then((conn) => {
+
+    var ok = conn.createChannel();
+    ok = ok.then((ch) => {
+      ch.assertQueue(queueName);
+
+      //consume message from rabbit queue
+      ch.consume(queueName, function (msg) {
+        if (msg !== null) {
+          console.log(msg.content.toString());
+          ch.ack(msg);
+          webSocket.emit('push',{text: msg.content.toString(), when: JSON.stringify(new Date())});
+          //socketService.emit('push' , {message : msg.content.toString()});
+        }
+      });
+    });
+
+    return ok;
+  }).then(null, console.warn);
+
+
+};
+
+
