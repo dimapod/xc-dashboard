@@ -1,10 +1,10 @@
 {
-  "name": "angular2-webpack-starter",
-  "version": "5.0.4",
-  "description": "An Angular 2 Webpack Starter kit featuring Angular 2 (Router, Http, Forms, Services, Tests, E2E, Coverage), Karma, Protractor, Jasmine, Istanbul, TypeScript, and Webpack by AngularClass",
-  "author": "Patrick Stapleton <patrick@angularclass.com>",
-  "homepage": "https://github.com/angularclass/angular2-webpack-starter",
+  "name": "xebicon-dashboard",
+  "version": "1.0.0",
+  "description": "XebiCon dashboard application",
+  "author": "",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "tslint": "tslint",
     "typings": "typings",
@@ -46,7 +46,8 @@
     "postinstall": "npm run typings -- install",
     "preversion": "npm test",
     "version": "npm run build",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "backend": "nodemon --harmony ./backend/server.js"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.1",
@@ -62,7 +63,16 @@
     "normalize.css": "^4.1.1",
     "rxjs": "5.0.0-beta.6",
     "socket.io-client": "^1.4.6",
-    "zone.js": "~0.6.12"
+    "zone.js": "~0.6.12",
+    "amqplib": "^0.4.1",
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "jade": "~1.11.0",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0",
+    "socket.io": "^1.4.5"
   },
   "devDependencies": {
     "angular2-hmr": "~0.6.0",
@@ -111,14 +121,8 @@
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1",
     "webpack-md5-hash": "^0.0.5",
-    "webpack-merge": "^0.12.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/angularclass/angular2-webpack-starter.git"
-  },
-  "bugs": {
-    "url": "https://github.com/angularclass/angular2-webpack-starter/issues"
+    "webpack-merge": "^0.12.0",
+    "nodemon": "^1.9.2"
   },
   "engines": {
     "node": ">= 4.2.1",

@@ -29,29 +29,25 @@ Icon?
 Thumbs.db
 
 # Node Files #
-/front/node_modules
-/front/npm-debug.log
-
-/server/node_modules
-/server/npm-debug.log
+/node_modules
+/npm-debug.log
 
 # Coverage #
-/front/coverage/
+/coverage/
 
 # Typing #
-/front/src/typings/tsd/
-/front/typings/
-/front/tsd_typings/
+/src/typings/tsd/
+/typings/
+/tsd_typings/
 
 # Dist #
-/front/dist
-/front/public/__build__/
-/front/src/*/__build__/
-/front/__build__/**
-/front/public/dist/
-/front/src/*/dist/
-/front/dist/**
-/front.webpack.json
+/dist
+/public/__build__/
+/src/*/__build__/
+/__build__/**
+/public/dist/
+/src/*/dist/
+/dist/**
 
 # Doc #
 /doc/

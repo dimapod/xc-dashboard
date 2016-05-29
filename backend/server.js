@@ -3,11 +3,11 @@
 /**
  * Module dependencies.
  */
-var app = require('../app');
+var app = require('./app');
 var debug = require('debug')('server-test:server');
 var http = require('http');
-var socketServer = require('../services/socket-service');
-var rabbitHandler = require('../services/rabbit-message-handler');
+var socketServer = require('./services/socket-service');
+var rabbitHandler = require('./services/rabbit-message-handler');
 
 /**
  * Get port from environment and store in Express.
