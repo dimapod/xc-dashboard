@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var debug = require('debug')('server-test:api');
+var debug = require('debug')('dashboard-backend:api');
 
 router.get('/users', function(req, res, next) {
   debug('Generating users');

@@ -11,12 +11,16 @@ import {SocketService} from "./api/socket.service";
     <home></home>
     
     <h2>API Test</h2>
-    <button (click)="onClick()">Http Get users from server</button>
+    <button (click)="httpTest()">Http Get users from server</button>
     <div *ngFor="let user of users">Name: {{ user.name }} - age: {{ user.age }} - now: {{ user.now }}</div>
     
     <h2>Socket.io Test</h2>
-    <div *ngFor="let message of wsData">From Socket.io: {{ message }}</div>
-    <button (click)="wsTest()">Send message to server</button>
+    
+    Message: <input [(ngModel)]="message">
+    <button (click)="socketTest(message)">Send message to server</button>
+    <br>
+    <button (click)="socketData.length = 0">Clear</button>
+    <div *ngFor="let message of socketData">Socket.io: {{ message }}</div>
   `,
   providers: [UserService, SocketService],
   directives: [Home],
@@ -34,18 +38,24 @@ export class App {
   name = 'Angular 2 Webpack Starter';
 
   users:any = [];
-  wsData:any = [];
+  socketData:any = [];
   errorMessage:any;
 
   constructor(public userService:UserService, public socketService:SocketService) {
   }
 
   ngOnInit() {
-    console.log('ngOnInit')
-    this.socketService.initialiazeReciever(this.wsData);
+    console.log('ngOnInit');
+    this.socketService.onRabbitMessage((data:any) => {
+      this.socketData.unshift(JSON.stringify(data));
+    });
+
+    this.socketService.onTimeMessage((timeMsg:string) => {
+      this.socketData.unshift('Time message - ' + timeMsg);
+    });
   }
 
-  onClick() {
+  httpTest() {
     console.log('Clicked');
 
     this.userService.getUsers()
@@ -54,8 +64,8 @@ export class App {
         error => this.errorMessage = <any>error);
   }
 
-  wsTest() {
-    this.socketService.sendData('Hello Angular');
+  socketTest(message:string) {
+    this.socketService.sendData('Angular: ' + message);
   }
 
 }

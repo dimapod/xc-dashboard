@@ -1,11 +1,23 @@
 var socket = require('socket.io');
-var debug = require('debug')('server-test:server');
+var debug = require('debug')('dashboard-backend:socket');
 
-module.exports = function (server) {
+module.exports = (server) => {
   var io = socket.listen(server);
 
-  io.sockets.on('connection', function (socket) {
-    debug('a user connected : ', socket.id);
+  io.sockets.on('connection', (socket) => {
+
+    var id = setInterval(() => {
+      var msg = JSON.stringify(new Date());
+      socket.emit('time message', msg);
+    }, 5000);
+
+    debug('socket.io connection open');
+
+    socket.on('disconnect', function () {
+      debug('socket.io connection close');
+      clearInterval(id);
+    });
+
     socket.on('push', function (data) {
       debug('Receive: ' + data);
     })

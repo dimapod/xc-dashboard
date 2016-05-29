@@ -9,15 +9,20 @@ export class SocketService {
     this.socket = io.connect('http://localhost:8001');
   }
 
-  initialiazeReciever(wsData:any) {
-    this.socket.on('push', (data:any) => {
-      console.log('server push ', JSON.stringify(data));
-      wsData.push(JSON.stringify(data));
-    });
-  }
-
   sendData(data:any) {
     this.socket.emit('push', data);
+  }
+
+  onTimeMessage(cb) {
+    this.socket.on('time message', cb);
+  }
+
+  onRabbitMessage(cb) {
+    this.socket.on('push', cb);
+  }
+
+  getSocket():Socket {
+    return this.socket;
   }
 
 }

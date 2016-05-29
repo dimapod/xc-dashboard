@@ -2,12 +2,12 @@ var queueName = 'test';
 var user = process.env.RABBIT_USER || 'root';
 var pwd = process.env.RABBIT_PASSWORD || 'root';
 var host = process.env.RABBIT_HOST || '192.168.99.101';
-var rabbitUrl = 'amqp://'+user+':'+pwd+'@'+host;
+var rabbitUrl = 'amqp://' + user + ':' + pwd + '@' + host;
 // var open = require('amqplib').connect('amqp://root:root@192.168.99.101');
 var open = require('amqplib').connect(rabbitUrl);
-var debug = require('debug')('server-test:server');
+var debug = require('debug')('dashboard-backend:server');
 
-module.exports = function (webSocket) {
+module.exports = function (io) {
 // Consumer
   open.then((conn) => {
 
@@ -15,12 +15,12 @@ module.exports = function (webSocket) {
     ok = ok.then((ch) => {
       ch.assertQueue(queueName);
 
-      //consume message from rabbit queue
+      // Consume message from rabbit queue
       ch.consume(queueName, function (msg) {
         if (msg !== null) {
           debug(msg.content.toString());
           ch.ack(msg);
-          webSocket.emit('push',{text: msg.content.toString(), when: JSON.stringify(new Date())});
+          io.emit('push', {text: msg.content.toString(), when: JSON.stringify(new Date())});
           //socketService.emit('push' , {message : msg.content.toString()});
         }
       });
@@ -28,8 +28,6 @@ module.exports = function (webSocket) {
 
     return ok;
   }).then(null, console.warn);
-
-
 };
 
 

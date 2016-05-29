@@ -1,2 +1,2 @@
 #!/bin/bash
-DEBUG=server-test:* npm run backend
+DEBUG=dashboard-backend:* npm run backend

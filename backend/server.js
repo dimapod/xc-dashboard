@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 var app = require('./app');
-var debug = require('debug')('server-test:server');
+var debug = require('debug')('dashboard-backend:server');
 var http = require('http');
 var socketServer = require('./services/socket-service');
 var rabbitHandler = require('./services/rabbit-message-handler');
@@ -18,9 +18,7 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-var server = app.listen(port, () => {
-  debug('Server up : http://localhost:' + port);
-});
+var server = app.listen(port);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -31,12 +29,12 @@ server.on('listening', onListening);
 /**
  * Create Socketserver
  */
-var ws = socketServer(server);
+var io = socketServer(server);
 
 /**
  * Create Rabbit Handler
  */
-var rabbit =  rabbitHandler(ws);
+var rabbit = rabbitHandler(io);
 
 
 /**
