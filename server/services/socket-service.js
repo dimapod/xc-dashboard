@@ -5,14 +5,14 @@ module.exports = function (server) {
   var io = socket.listen(server);
 
   io.sockets.on('connection', function (socket) {
-    debug(('a user connected : ', socket.id);
+    debug('a user connected : ', socket.id);
     socket.on('push', function (data) {
       debug('Receive: ' + data);
     })
   });
 
   io.sockets.on('push', (data)=> {
-    debug(('receive : ', data);
+    debug('receive : ', data);
   });
 
   return io;
