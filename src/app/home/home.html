@@ -1,4 +1,5 @@
-<h1>Home Component</h1>
+<child #child1></child>
+<child #child2></child>
 
-<child #child1 ></child>
-<child #child2 ></child>
+<button (click)="onClick()">Invoke greet on child 1</button>
+<button (click)="child2.greet('from inside the html')">Invoke greet on child 2</button>

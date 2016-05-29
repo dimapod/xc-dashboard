@@ -56,6 +56,11 @@ module.exports = {
         test: /\.html$/,
         loader: 'raw-loader',
         exclude: [helpers.root('src/index.html')]
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['raw-loader', 'sass'],
+        exclude: /node_modules/
       }
     ]
 
