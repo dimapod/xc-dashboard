@@ -16,6 +16,8 @@ export class Home {
   @ViewChild(Child) firstChildRef:Child;
   @ViewChildren(Child) children:QueryList<Child>;
 
+  isOn:boolean = true;
+
   ngAfterViewInit() {
     console.log('firstChild', this.firstChild);
     console.log('firstChildRef', this.firstChildRef);
