@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation} from "@angular/core";
 import {Home} from "./home";
 import {UserService} from "./user.service";
-import {SocketService} from "./socket.service";
+import {SocketService} from "../service/socket.service.ts";
 
 @Component({
   selector: 'sandbox',

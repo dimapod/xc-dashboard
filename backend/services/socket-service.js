@@ -13,17 +13,17 @@ module.exports = (server) => {
 
     debug('socket.io connection open');
 
-    socket.on('disconnect', function () {
+    socket.on('disconnect', () => {
       debug('socket.io connection close');
       clearInterval(id);
     });
 
-    socket.on('push', function (data) {
+    socket.on('train', (data) => {
       debug('Receive: ' + data);
     })
   });
 
-  io.sockets.on('push', (data)=> {
+  io.sockets.on('train', (data)=> {
     debug('receive : ', data);
   });
 

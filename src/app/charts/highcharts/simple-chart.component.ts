@@ -1,9 +1,11 @@
 import {Component} from "@angular/core";
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
+import {SocketService} from "../../service/socket.service.ts";
 
 @Component({
   selector: 'simple-highchart-example',
   directives: [CHART_DIRECTIVES],
+  providers: [SocketService],
   template: `
       <chart [options]="options" (load)="saveInstance($event.context)"></chart>
       <button (click)="changeValues()">Change values</button>
@@ -13,7 +15,7 @@ export class SimpleHighchartExample {
   options:Object;
   chart:any;
 
-  constructor() {
+  constructor(private socketService:SocketService) {
     this.options = {
       title: {text: 'Votes'},
       chart: {
@@ -23,7 +25,7 @@ export class SimpleHighchartExample {
         max: 130
       },
       xAxis: {
-        categories: ['Asia', 'Europe'],
+        categories: ['Train 1', ' Train 2'],
       },
       legend: {
         enabled: false
@@ -37,6 +39,10 @@ export class SimpleHighchartExample {
     };
   }
 
+  ngOnInit() {
+    this.socketService.onVoteMessage((data) => this.receiveVoteMessage(data));
+  }
+
   saveInstance(chartInstance) {
     this.chart = chartInstance;
   }
@@ -46,4 +52,11 @@ export class SimpleHighchartExample {
     this.chart.series[0].setData(data);
   }
 
+  //todo refactor
+  receiveVoteMessage(data:any) {
+    console.log('socket: ' + JSON.stringify(data));
+    console.log('content: ' + data.content);
+    let content = JSON.parse(data.content);
+    this.chart.series[0].setData(content);
+  }
 }

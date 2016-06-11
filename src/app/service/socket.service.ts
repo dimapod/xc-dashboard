@@ -10,15 +10,19 @@ export class SocketService {
   }
 
   sendData(data:any) {
-    this.socket.emit('push', data);
+    this.socket.emit('train', data);
   }
 
-  onTimeMessage(cb) {
-    this.socket.on('time message', cb);
+  onTimeMessage(fn) {
+    this.socket.on('time message', fn);
   }
 
-  onRabbitMessage(cb) {
-    this.socket.on('push', cb);
+  onRabbitMessage(fn) {
+    this.socket.on('train', fn);
+  }
+
+  onVoteMessage(fn){
+    this.socket.on('vote', fn);
   }
 
   getSocket():Socket {

@@ -1,4 +1,4 @@
-var queueName = 'test';
+var queueName = 'xebicon';
 var user = process.env.RABBIT_USER || 'root';
 var pwd = process.env.RABBIT_PASSWORD || 'root';
 var host = process.env.RABBIT_HOST || '192.168.99.101';
@@ -7,7 +7,7 @@ var rabbitUrl = 'amqp://' + user + ':' + pwd + '@' + host;
 var open = require('amqplib').connect(rabbitUrl);
 var debug = require('debug')('dashboard-backend:server');
 
-module.exports = function (io) {
+module.exports = (io) => {
 // Consumer
   open.then((conn) => {
 
@@ -15,13 +15,15 @@ module.exports = function (io) {
     ok = ok.then((ch) => {
       ch.assertQueue(queueName);
 
-      // Consume message from rabbit queue
-      ch.consume(queueName, function (msg) {
+      // Consume message from rabbit queue train
+      ch.consume(queueName, (msg) => {
         if (msg !== null) {
+          debug(msg);
           debug(msg.content.toString());
           ch.ack(msg);
-          io.emit('push', {text: msg.content.toString(), when: JSON.stringify(new Date())});
-          //socketService.emit('push' , {message : msg.content.toString()});
+          //exemple of message : {"train":"01" ,"step": "pos_1_step_2"}
+          //type = vote/train
+          io.emit(msg.properties.type, {content: msg.content.toString(), when: JSON.stringify(new Date())});
         }
       });
     });
