@@ -3,6 +3,9 @@
 ## Prerequisites
 * [Git](http://git-scm.com/)
 * [Node.js](http://nodejs.org/) (with NPM)
+* [RabbitMQ](https://hub.docker.com/_/rabbitmq/) (docker-container)
+* After Install RabbitMQ Create queue name : xebicon
+
 
 ## Installation
 
@@ -15,5 +18,12 @@
 * `./start-backend.sh`
 * `./start-frontend.sh`
 * Visit [localhost:8000](http://localhost:8000)
+
+####  Push Message on RabbitMQ
+ ##### For train add property 'type' with value 'train'
+* move train message example : {"train":"01" ,"step": "pos_1_step_2"}
+
+##### For vote add property 'type' with value 'vote'
+* vote  message example : [55.8, 87.45]
 
 
