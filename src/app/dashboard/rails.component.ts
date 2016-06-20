@@ -2,11 +2,14 @@ import {Component, ViewEncapsulation, QueryList, ViewChildren} from "@angular/co
 import {Step} from "./step.directive";
 import {SocketService} from "../service/socket.service.ts";
 import {Train} from "../models/train";
+import {RailsActions} from "./rails.actions";
+import {select} from "ng2-redux/lib/index";
+import {Observable} from "rxjs/Rx";
 
 @Component({
   selector: 'rails',
   template: require('./rails.component.html'),
-  providers: [SocketService],
+  providers: [SocketService, RailsActions],
   directives: [Step],
   pipes: [],
   encapsulation: ViewEncapsulation.None,
@@ -21,21 +24,23 @@ export class RailsComponent {
   trains:Array<Train> = new Array();
   data:string;
 
-  constructor(public socketService:SocketService) {
+  @select('rails') rails$: Observable<string>;
+
+  constructor(public socketService:SocketService, public railsActions:RailsActions) {
     this.trains.push(new Train('01', 'pos_1_step_1', 'url(#mx-gradient-ffcd28-1-ffa500-1-s-0)'));
     this.trains.push(new Train('02', 'pos_2_step_1', 'url(#mx-gradient-e1d5e7-1-8c6c9c-1-s-0)'));
   }
 
-  switch() {
-    if (this.switchLeft === 'none') {
-      this.switchLeft = 'block';
-      this.switchRight = 'none';
-    } else {
-      this.switchLeft = 'none';
-      this.switchRight = 'block';
-    }
-
-    console.log(this.switchLeft, this.switchRight);
+  ngOnInit() {
+    this.rails$.subscribe((data) => {
+      if (data === 'left') {
+        this.switchLeft = 'block';
+        this.switchRight = 'none';
+      } else {
+        this.switchLeft = 'none';
+        this.switchRight = 'block';
+      }
+    });
   }
 
   ngAfterViewInit() {

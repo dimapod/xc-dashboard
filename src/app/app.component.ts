@@ -4,6 +4,10 @@ import {RouterActive} from "./router-active/router-active.directive";
 import {SandboxComponent} from "./sandbox/sandbox.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {ChartSandboxComponent} from "./charts/charts.component";
+import {AsyncPipe} from "@angular/common";
+import {NgRedux} from "ng2-redux/lib/index";
+import {RootState} from "./store/index";
+import reducer from './reducers/index';
 
 @Component({
   selector: 'app',
@@ -28,7 +32,7 @@ import {ChartSandboxComponent} from "./charts/charts.component";
   `,
   providers: [],
   directives: [RouterActive],
-  pipes: [],
+  pipes: [AsyncPipe],
   encapsulation: ViewEncapsulation.None,
   styles: [
     require('normalize.css'),
@@ -45,5 +49,14 @@ import {ChartSandboxComponent} from "./charts/charts.component";
   {path: '/charts', name: 'Charts', component: ChartSandboxComponent}
 ])
 export class App {
+  constructor(private ngRedux: NgRedux<RootState>) {
 
+    // Do this once in the top-level app component.
+    this.ngRedux.configureStore(
+      reducer,
+      { railsSwitch: 'left' },
+      [ ]
+    );
+
+  }
 }

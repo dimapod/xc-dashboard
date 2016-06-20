@@ -19,6 +19,9 @@
 * `./start-frontend.sh`
 * Visit [localhost:8000](http://localhost:8000)
 
+## Launch RabbitMq (docker)
+* `docker run -d --hostname my-rabbit -e RABBITMQ_DEFAULT_USER=root -e RABBITMQ_DEFAULT_PASS=root --name rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management`
+
 ####  Push Message on RabbitMQ
  ##### For train add property 'type' with value 'train'
 * move train message example : {"train":"01" ,"step": "pos_1_step_2"}

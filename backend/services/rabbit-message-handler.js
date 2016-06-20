@@ -1,7 +1,7 @@
 var queueName = 'xebicon';
 var user = process.env.RABBIT_USER || 'root';
 var pwd = process.env.RABBIT_PASSWORD || 'root';
-var host = process.env.RABBIT_HOST || '192.168.99.101';
+var host = process.env.RABBIT_HOST || 'localhost';
 var rabbitUrl = 'amqp://' + user + ':' + pwd + '@' + host;
 // var open = require('amqplib').connect('amqp://root:root@192.168.99.101');
 var open = require('amqplib').connect(rabbitUrl);
