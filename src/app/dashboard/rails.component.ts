@@ -5,6 +5,7 @@ import {Train} from "../models/train";
 import {RailsActions} from "./rails.actions";
 import {select} from "ng2-redux/lib/index";
 import {Observable} from "rxjs/Rx";
+import {RailsState} from "../store/index";
 
 @Component({
   selector: 'rails',
@@ -24,7 +25,7 @@ export class RailsComponent {
   trains:Array<Train> = new Array();
   data:string;
 
-  @select('rails') rails$: Observable<string>;
+  @select('rails') rails$: Observable<RailsState>;
 
   constructor(public socketService:SocketService, public railsActions:RailsActions) {
     this.trains.push(new Train('01', 'pos_1_step_1', 'url(#mx-gradient-ffcd28-1-ffa500-1-s-0)'));
@@ -32,15 +33,17 @@ export class RailsComponent {
   }
 
   ngOnInit() {
-    this.rails$.subscribe((data) => {
-      if (data === 'left') {
-        this.switchLeft = 'block';
-        this.switchRight = 'none';
-      } else {
-        this.switchLeft = 'none';
-        this.switchRight = 'block';
-      }
-    });
+    this.rails$
+      .map((railsState:RailsState) => railsState.direction)
+      .subscribe((data:string) => {
+        if (data === 'left') {
+          this.switchLeft = 'block';
+          this.switchRight = 'none';
+        } else {
+          this.switchLeft = 'none';
+          this.switchRight = 'block';
+        }
+      });
   }
 
   ngAfterViewInit() {

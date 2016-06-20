@@ -1,3 +1,12 @@
+export interface RailsState {
+  direction:string;
+}
+
+export interface ChartState {
+  votes:Array<number>;
+}
+
 export interface RootState {
-  railsSwitch: string;
+  rails:RailsState;
+  chart:ChartState;
 }

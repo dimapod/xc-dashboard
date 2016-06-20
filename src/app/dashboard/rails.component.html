@@ -57,7 +57,7 @@
   <br/>
 
 
-  Switch is now {{ rails$ | async }}
+  Switch is now {{ (rails$ | async).direction }}
   <button (click)="railsActions.toggleSwitch()">Switch</button>
 
 </div>

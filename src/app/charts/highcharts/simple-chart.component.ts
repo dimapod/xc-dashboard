@@ -1,21 +1,28 @@
 import {Component} from "@angular/core";
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
 import {SocketService} from "../../service/socket.service.ts";
+import {ChartActions} from "./chart.actions";
+import {select} from "ng2-redux/lib/index";
+import {Observable} from "rxjs/Observable";
+import {ChartState} from "../../store/index";
 
 @Component({
   selector: 'simple-highchart-example',
   directives: [CHART_DIRECTIVES],
-  providers: [SocketService],
+  providers: [SocketService, ChartActions],
   template: `
       <chart [options]="options" (load)="saveInstance($event.context)"></chart>
-      <button (click)="changeValues()">Change values</button>
+      <button (click)="chartActions.vote()">Change values</button>
   `
 })
 export class SimpleHighchartExample {
   options:Object;
   chart:any;
 
-  constructor(private socketService:SocketService) {
+  @select('chart') chart$:Observable<ChartState>;
+
+
+  constructor(private socketService:SocketService, private chartActions:ChartActions) {
     this.options = {
       title: {text: 'Votes'},
       chart: {
@@ -41,15 +48,15 @@ export class SimpleHighchartExample {
 
   ngOnInit() {
     this.socketService.onVoteMessage((data) => this.receiveVoteMessage(data));
+
   }
 
   saveInstance(chartInstance) {
     this.chart = chartInstance;
-  }
 
-  changeValues() {
-    let data = [1, 2].map(() => Math.random() * 130);
-    this.chart.series[0].setData(data);
+    this.chart$.subscribe((state:ChartState) => {
+      chartInstance.series[0].setData(state.votes);
+    });
   }
 
   //todo refactor

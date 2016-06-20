@@ -5,9 +5,9 @@ import {SandboxComponent} from "./sandbox/sandbox.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {ChartSandboxComponent} from "./charts/charts.component";
 import {AsyncPipe} from "@angular/common";
-import {NgRedux} from "ng2-redux/lib/index";
-import {RootState} from "./store/index";
-import reducer from './reducers/index';
+import {NgRedux} from "ng2-redux/lib";
+import {RootState} from "./store";
+import reducer from './reducers';
 
 @Component({
   selector: 'app',
@@ -49,13 +49,16 @@ import reducer from './reducers/index';
   {path: '/charts', name: 'Charts', component: ChartSandboxComponent}
 ])
 export class App {
-  constructor(private ngRedux: NgRedux<RootState>) {
+  constructor(private ngRedux:NgRedux<RootState>) {
 
     // Do this once in the top-level app component.
     this.ngRedux.configureStore(
       reducer,
-      { railsSwitch: 'left' },
-      [ ]
+      {
+        rails: {direction: 'left'},
+        chart: {votes: [13, 53]}
+      },
+      []
     );
 
   }
