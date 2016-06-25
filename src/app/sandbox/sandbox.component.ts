@@ -1,7 +1,6 @@
 import {Component, ViewEncapsulation} from "@angular/core";
 import {Home} from "./home";
 import {UserService} from "./user.service";
-import {SocketService} from "../service/socket.service.ts";
 
 @Component({
   selector: 'sandbox',
@@ -13,15 +12,11 @@ import {SocketService} from "../service/socket.service.ts";
     <button (click)="httpTest()">Http Get users from server</button>
     <div *ngFor="let user of users">Name: {{ user.name }} - age: {{ user.age }} - now: {{ user.now }}</div>
     
-    <h2>Socket.io Test</h2>
-    
-    Message: <input [(ngModel)]="message">
-    <button (click)="socketTest(message)">Send message to server</button>
-    <br>
+    <h2>Socket.io Test</h2>    
     <button (click)="socketData.length = 0">Clear</button>
     <div *ngFor="let message of socketData">Socket.io: {{ message }}</div>
   `,
-  providers: [UserService, SocketService],
+  providers: [UserService],
   directives: [Home],
   pipes: [],
   encapsulation: ViewEncapsulation.None,
@@ -41,18 +36,18 @@ export class SandboxComponent {
   socketData:any = [];
   errorMessage:any;
 
-  constructor(public userService:UserService, public socketService:SocketService) {
+  constructor(public userService:UserService) {
   }
 
   ngOnInit() {
     console.log('ngOnInit');
-    this.socketService.onRabbitMessage((data:any) => {
-      this.socketData.unshift(JSON.stringify(data));
-    });
-
-    this.socketService.onTimeMessage((timeMsg:string) => {
-      this.socketData.unshift('Time message - ' + timeMsg);
-    });
+    // this.socketService.onRabbitMessage((data:any) => {
+    //   this.socketData.unshift(JSON.stringify(data));
+    // });
+    //
+    // this.socketService.onTimeMessage((timeMsg:string) => {
+    //   this.socketData.unshift('Time message - ' + timeMsg);
+    // });
   }
 
   httpTest() {
@@ -64,8 +59,8 @@ export class SandboxComponent {
         error => this.errorMessage = <any>error);
   }
 
-  socketTest(message:string) {
-    this.socketService.sendData('Angular: ' + message);
-  }
+  // socketTest(message:string) {
+  //   this.socketService.sendData('Angular: ' + message);
+  // }
 
 }

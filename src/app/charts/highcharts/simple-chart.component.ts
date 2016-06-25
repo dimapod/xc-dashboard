@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
-import {SocketService} from "../../service/socket.service.ts";
+import {SocketService} from "../../communication/socket.service.ts";
 import {ChartActions} from "./chart.actions";
 import {select} from "ng2-redux/lib/index";
 import {Observable} from "rxjs/Observable";
@@ -9,7 +9,7 @@ import {ChartState} from "../../store/index";
 @Component({
   selector: 'simple-highchart-example',
   directives: [CHART_DIRECTIVES],
-  providers: [SocketService, ChartActions],
+  providers: [ChartActions],
   template: `
       <chart [options]="options" (load)="saveInstance($event.context)"></chart>
       <button (click)="chartActions.vote()">Change values</button>
@@ -47,8 +47,7 @@ export class SimpleHighchartExample {
   }
 
   ngOnInit() {
-    this.socketService.onVoteMessage((data) => this.receiveVoteMessage(data));
-
+//    this.socketService.onVoteMessage((data) => this.receiveVoteMessage(data));
   }
 
   saveInstance(chartInstance) {

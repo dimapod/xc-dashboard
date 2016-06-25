@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation, QueryList, ViewChildren} from "@angular/core";
 import {Step} from "./step.directive";
-import {SocketService} from "../service/socket.service.ts";
+import {SocketService} from "../communication/socket.service.ts";
 import {Train} from "../models/train";
 import {RailsActions} from "./rails.actions";
 import {select} from "ng2-redux/lib/index";
@@ -10,7 +10,7 @@ import {RailsState} from "../store/index";
 @Component({
   selector: 'rails',
   template: require('./rails.component.html'),
-  providers: [SocketService, RailsActions],
+  providers: [RailsActions],
   directives: [Step],
   pipes: [],
   encapsulation: ViewEncapsulation.None,
@@ -51,9 +51,9 @@ export class RailsComponent {
       console.log(`train: {id :${train.id}  position: ${train.position}`);
       this.findStep(train.position).display();
     });
-    this.socketService.onRabbitMessage((data:any)=> {
-      this.onReceiveMessage(data)
-    });
+    // this.socketService.onRabbitMessage((data:any)=> {
+    //   this.onReceiveMessage(data)
+    // });
   }
 
   onReceiveMessage(data:any) {

@@ -8,6 +8,8 @@ import {AsyncPipe} from "@angular/common";
 import {NgRedux} from "ng2-redux/lib";
 import {RootState} from "./store";
 import reducer from './reducers';
+import {SocketService} from "./communication/socket.service";
+import {Logger} from "angular2-logger/core";
 
 @Component({
   selector: 'app',
@@ -30,7 +32,7 @@ import reducer from './reducers';
     
     <router-outlet></router-outlet>
   `,
-  providers: [],
+  providers: [SocketService],
   directives: [RouterActive],
   pipes: [AsyncPipe],
   encapsulation: ViewEncapsulation.None,
@@ -49,7 +51,9 @@ import reducer from './reducers';
   {path: '/charts', name: 'Charts', component: ChartSandboxComponent}
 ])
 export class App {
-  constructor(private ngRedux:NgRedux<RootState>) {
+  constructor(private ngRedux:NgRedux<RootState>, private logger:Logger) {
+
+    logger.level = 5;
 
     // Do this once in the top-level app component.
     this.ngRedux.configureStore(
