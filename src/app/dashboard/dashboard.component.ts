@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation} from "@angular/core";
-import {RailsComponent} from "./rails.component";
 import {VoteChartComponent} from "../shared/vote-chart/bar-chart.component";
+import {RailsComponent} from "./rails/rails.component";
 
 @Component({
   selector: 'dashboard',
