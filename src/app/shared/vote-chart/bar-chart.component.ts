@@ -7,7 +7,7 @@ import {Observable} from "rxjs/Observable";
 import {ChartState} from "../../store/index";
 
 @Component({
-  selector: 'simple-highchart-example',
+  selector: 'bar-chart-example',
   directives: [CHART_DIRECTIVES],
   providers: [ChartActions],
   template: `
@@ -15,14 +15,13 @@ import {ChartState} from "../../store/index";
       <button (click)="chartActions.vote()">Change values</button>
   `
 })
-export class SimpleHighchartExample {
+export class VoteChartComponent {
   options:Object;
   chart:any;
 
   @select('chart') chart$:Observable<ChartState>;
 
-
-  constructor(private socketService:SocketService, private chartActions:ChartActions) {
+  constructor(private chartActions:ChartActions) {
     this.options = {
       title: {text: 'Votes'},
       chart: {
@@ -46,23 +45,11 @@ export class SimpleHighchartExample {
     };
   }
 
-  ngOnInit() {
-//    this.socketService.onVoteMessage((data) => this.receiveVoteMessage(data));
-  }
-
   saveInstance(chartInstance) {
     this.chart = chartInstance;
 
     this.chart$.subscribe((state:ChartState) => {
       chartInstance.series[0].setData(state.votes);
     });
-  }
-
-  //todo refactor
-  receiveVoteMessage(data:any) {
-    console.log('socket: ' + JSON.stringify(data));
-    console.log('content: ' + data.content);
-    let content = JSON.parse(data.content);
-    this.chart.series[0].setData(content);
   }
 }

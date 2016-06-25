@@ -1,17 +1,16 @@
 import {Component, ViewEncapsulation} from "@angular/core";
 import {RailsComponent} from "./rails.component";
-import {SimpleHighchartExample} from "../charts/highcharts/simple-chart.component";
+import {VoteChartComponent} from "../shared/vote-chart/bar-chart.component";
 
 @Component({
   selector: 'dashboard',
   template: `
     <h2>Dashboard</h2>
       <rails></rails>
-    
-      <simple-highchart-example></simple-highchart-example>
+      <bar-chart-example></bar-chart-example>
   `,
   providers: [],
-  directives: [ RailsComponent,SimpleHighchartExample],
+  directives: [RailsComponent, VoteChartComponent],
   pipes: [],
   encapsulation: ViewEncapsulation.None,
   styles: [``]

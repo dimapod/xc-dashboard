@@ -1,39 +1,21 @@
 import {Component, ViewEncapsulation} from "@angular/core";
 import {RouteConfig} from "@angular/router-deprecated";
-import {RouterActive} from "./router-active/router-active.directive";
-import {SandboxComponent} from "./sandbox/sandbox.component";
-import {DashboardComponent} from "./dashboard/dashboard.component";
-import {ChartSandboxComponent} from "./charts/charts.component";
 import {AsyncPipe} from "@angular/common";
 import {NgRedux} from "ng2-redux/lib";
+import {Logger} from "angular2-logger/core";
 import {RootState} from "./store";
 import reducer from './reducers';
 import {SocketService} from "./communication/socket.service";
-import {Logger} from "angular2-logger/core";
+import {SandboxComponent} from "./sandbox/sandbox.component";
+import {ChartSandboxComponent} from "./sandbox/charts/charts.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
 
 @Component({
   selector: 'app',
   template: `
-    <span router-active>
-      <button [routerLink]=" ['Dashboard'] ">
-        Dashboard
-      </button>
-    </span>
-    <span router-active>
-      <button [routerLink]=" ['Sandbox'] ">
-        Sandbox
-      </button>
-    </span>
-    <span router-active>
-      <button [routerLink]=" ['Charts'] ">
-        Charts
-      </button>
-    </span>
-    
     <router-outlet></router-outlet>
   `,
   providers: [SocketService],
-  directives: [RouterActive],
   pipes: [AsyncPipe],
   encapsulation: ViewEncapsulation.None,
   styles: [
@@ -53,9 +35,9 @@ import {Logger} from "angular2-logger/core";
 export class App {
   constructor(private ngRedux:NgRedux<RootState>, private logger:Logger) {
 
-    logger.level = 5;
+    logger.level = logger.Level.LOG;
 
-    // Do this once in the top-level app component.
+    // Redux Store
     this.ngRedux.configureStore(
       reducer,
       {
@@ -64,6 +46,5 @@ export class App {
       },
       []
     );
-
   }
 }

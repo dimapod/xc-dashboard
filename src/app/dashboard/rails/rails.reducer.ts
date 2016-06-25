@@ -1,5 +1,5 @@
 import {RailsActions} from "./rails.actions";
-import {RailsState} from "../store/index";
+import {RailsState} from "../../store/index";
 
 export default (state:RailsState = {direction: 'left'}, action:any) => {
   switch (action.type) {

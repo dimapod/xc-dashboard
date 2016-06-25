@@ -1,11 +1,10 @@
 import {Component, ViewEncapsulation, QueryList, ViewChildren} from "@angular/core";
 import {Step} from "./step.directive";
-import {SocketService} from "../communication/socket.service.ts";
-import {Train} from "../models/train";
 import {RailsActions} from "./rails.actions";
 import {select} from "ng2-redux/lib/index";
 import {Observable} from "rxjs/Rx";
-import {RailsState} from "../store/index";
+import {Train} from "../../models/train";
+import {RailsState} from "../../store/index";
 
 @Component({
   selector: 'rails',
@@ -22,12 +21,12 @@ export class RailsComponent {
 
   switchLeft:string = 'none';
   switchRight:string = 'block';
-  trains:Array<Train> = new Array();
+  trains:Array<Train> = [];
   data:string;
 
   @select('rails') rails$: Observable<RailsState>;
 
-  constructor(public socketService:SocketService, public railsActions:RailsActions) {
+  constructor(public railsActions:RailsActions) {
     this.trains.push(new Train('01', 'pos_1_step_1', 'url(#mx-gradient-ffcd28-1-ffa500-1-s-0)'));
     this.trains.push(new Train('02', 'pos_2_step_1', 'url(#mx-gradient-e1d5e7-1-8c6c9c-1-s-0)'));
   }
@@ -51,9 +50,6 @@ export class RailsComponent {
       console.log(`train: {id :${train.id}  position: ${train.position}`);
       this.findStep(train.position).display();
     });
-    // this.socketService.onRabbitMessage((data:any)=> {
-    //   this.onReceiveMessage(data)
-    // });
   }
 
   onReceiveMessage(data:any) {

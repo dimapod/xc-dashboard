@@ -26,17 +26,16 @@ import {Instruction, RouterLink} from '@angular/router-deprecated';
   selector: '[router-active]'
 })
 export class RouterActive {
-  @Input() routerActive: string = undefined;
-  routerActiveAttr: string = 'active';
+  @Input() routerActive:string = undefined;
+  routerActiveAttr:string = 'active';
 
-  constructor(
-    public router: Router,
-    public element: ElementRef,
-    public renderer: Renderer,
-    @Query(RouterLink) public routerLink: QueryList<RouterLink>,
-    @Optional() @Attribute('router-active') routerActiveAttr?: string) {
+  constructor(public router:Router,
+              public element:ElementRef,
+              public renderer:Renderer,
+              @Query(RouterLink) public routerLink:QueryList<RouterLink>,
+              @Optional() @Attribute('router-active') routerActiveAttr?:string) {
 
-      this.routerActiveAttr = this._defaultAttrValue(routerActiveAttr);
+    this.routerActiveAttr = this._defaultAttrValue(routerActiveAttr);
   }
 
   ngOnInit() {
@@ -50,8 +49,8 @@ export class RouterActive {
     });
   }
 
-  private _findRootRouter(): Router {
-    let router: Router = this.router;
+  private _findRootRouter():Router {
+    let router:Router = this.router;
     while (isPresent(router.parent)) {
       router = router.parent;
     }
@@ -63,7 +62,7 @@ export class RouterActive {
     this.renderer.setElementClass(this.element.nativeElement, this._attrOrProp(), active);
   }
 
-  private _defaultAttrValue(attr?: string) {
+  private _defaultAttrValue(attr?:string) {
     return this.routerActiveAttr = attr || this.routerActiveAttr;
   }
 
