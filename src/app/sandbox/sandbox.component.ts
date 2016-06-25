@@ -7,12 +7,12 @@ import {UserService} from "./user.service";
   template: `
     <h2>Component Test</h2>
     <home></home>
-    
+
     <h2>API Test</h2>
     <button (click)="httpTest()">Http Get users from server</button>
     <div *ngFor="let user of users">Name: {{ user.name }} - age: {{ user.age }} - now: {{ user.now }}</div>
-    
-    <h2>Socket.io Test</h2>    
+
+    <h2>Socket.io Test</h2>
     <button (click)="socketData.length = 0">Clear</button>
     <div *ngFor="let message of socketData">Socket.io: {{ message }}</div>
   `,
@@ -48,6 +48,9 @@ export class SandboxComponent {
     // this.socketService.onTimeMessage((timeMsg:string) => {
     //   this.socketData.unshift('Time message - ' + timeMsg);
     // });
+    //this.socketService.onObstacleMessage((obstacleMsg:any) => {
+    //  this.socketData.unshift('Obstacle message - ' + obstacleMsg);
+    //});
   }
 
   httpTest() {

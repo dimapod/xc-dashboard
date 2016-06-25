@@ -29,4 +29,12 @@ export class SocketService {
   pushToServer(data:any){
     this.socket.emit('dashboard',data);
   }
+
+  onObstacleMessage(fn){
+    this.socket.on('OBSTACLE_DETECTION', fn);
+  }
+
+  getSocket():Socket {
+    return this.socket;
+  }
 }

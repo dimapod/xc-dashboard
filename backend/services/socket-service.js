@@ -8,8 +8,14 @@ module.exports = (server, rabbitHandler) => {
   io.sockets.on('connection', (socket) => {
 
     var id = setInterval(() => {
-      var msg = JSON.stringify(new Date());
-      socket.emit('time message', msg);
+      var msgTypeRoll = Math.random(1);
+      if(msgTypeRoll>0.5){
+        var dateMsg = JSON.stringify(new Date());
+        socket.emit('time message', dateMsg);
+      } else {
+        var obstacleType = (msgTypeRoll>0.2)?'cow':(msgTypeRoll>0.1)?'poney':'unicorn';
+        socket.emit('OBSTACLE_DETECTION', obstacleType);
+      }
     }, 5000);
 
     debug('socket.io connection open');
