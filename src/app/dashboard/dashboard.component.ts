@@ -1,16 +1,16 @@
 import {Component, ViewEncapsulation} from "@angular/core";
-import {VoteChartComponent} from "../shared/vote-chart/bar-chart.component";
 import {RailsComponent} from "./rails/rails.component";
+import {VoteCounterComponent} from "./votes/vote-counter/vote-counter.component";
 
 @Component({
   selector: 'dashboard',
   template: `
     <h2>Dashboard</h2>
-      <rails></rails>
-      <bar-chart-example></bar-chart-example>
+    <rails></rails>
+    <vote-counter></vote-counter>
   `,
   providers: [],
-  directives: [RailsComponent, VoteChartComponent],
+  directives: [RailsComponent, VoteCounterComponent],
   pipes: [],
   encapsulation: ViewEncapsulation.None,
   styles: [``]

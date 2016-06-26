@@ -4,7 +4,7 @@ import {AsyncPipe} from "@angular/common";
 import {NgRedux} from "ng2-redux/lib";
 import {Logger} from "angular2-logger/core";
 import {RootState, InitialState} from "./store";
-import reducer from './reducers';
+import reducer from "./reducers";
 import {SocketService} from "./communication/socket.service";
 import {SandboxComponent} from "./sandbox/sandbox.component";
 import {ChartSandboxComponent} from "./sandbox/charts/charts.component";
@@ -33,9 +33,12 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
   {path: '/charts', name: 'Charts', component: ChartSandboxComponent}
 ])
 export class App {
-  constructor(private ngRedux:NgRedux<RootState>, private logger:Logger) {
-
+  constructor(private ngRedux:NgRedux<RootState>, private logger:Logger, private socketService:SocketService) {
+    // Logger level
     logger.level = logger.Level.LOG;
+
+    // SocketIO
+    socketService.subscribe();
 
     // Redux Store
     this.ngRedux.configureStore(reducer, InitialState.getInitialState(), []);

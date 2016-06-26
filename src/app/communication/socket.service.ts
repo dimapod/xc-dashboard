@@ -8,43 +8,21 @@ import {Message} from "./message";
 
 @Injectable()
 export class SocketService {
-
   socket:Socket;
 
   constructor(private ngRedux:NgRedux<RootState>, private logger:Logger) {
     this.socket = io.connect('http://localhost:8001');
-    this.subscribe();
   }
 
   subscribe() {
     this.socket.on('train', (msg) => {
-      let message:Message = new Message(msg.content);
-      if (message.isReduxMessage()) {
-        this.logger.debug(msg);
+      let message:any = JSON.parse(msg.content);
+      if (message.type) {
+        this.logger.debug('Message', JSON.stringify(message));
         this.ngRedux.dispatch(message);
       } else {
         this.logger.warn('Unknown message type', msg);
       }
     });
-  }
-
-  // sendData(data:any) {
-  //   this.socket.emit('train', data);
-  // }
-  //
-  // onTimeMessage(fn) {
-  //   this.socket.on('time message', fn);
-  // }
-  //
-  // onRabbitMessage(fn) {
-  //   this.socket.on('train', fn);
-  // }
-  //
-  // onVoteMessage(fn) {
-  //   this.socket.on('vote', fn);
-  // }
-
-  getSocket():Socket {
-    return this.socket;
   }
 }

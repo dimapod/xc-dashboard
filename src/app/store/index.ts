@@ -13,12 +13,15 @@ export interface ChartState {
 }
 
 export interface VotesState {
+  distribution:Array<number>,
   counter:VotesCountState;
   throughput:VotesThroughputState
 }
 
 export interface VotesCountState {
-  count:number;
+  mobile:number;
+  sms:number;
+  twitter:number;
 }
 
 export interface VotesThroughputState {
@@ -30,7 +33,8 @@ export class InitialState {
       rails: {direction: 'left'},
       chart: {votes: [13, 53]},
       votes: {
-        counter: {count: 0},
+        distribution: [0, 0],
+        counter: {mobile: 10, sms: 20, twitter: 30},
         throughput: {}
       }
     };
