@@ -1,6 +1,5 @@
 import {Component} from "@angular/core";
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
-import {SocketService} from "../../communication/socket.service.ts";
 import {ChartActions} from "./chart.actions";
 import {select} from "ng2-redux/lib/index";
 import {Observable} from "rxjs/Observable";

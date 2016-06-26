@@ -1,10 +1,10 @@
-import * as io from 'socket.io-client';
-import Socket = SocketIOClient.Socket;
+import * as io from "socket.io-client";
 import {Injectable} from "@angular/core";
 import {NgRedux} from "ng2-redux/lib/index";
 import {RootState} from "../store/index";
-import {Message} from "../models/message";
 import {Logger} from "angular2-logger/core";
+import Socket = SocketIOClient.Socket;
+import {Message} from "./message";
 
 @Injectable()
 export class SocketService {
@@ -20,13 +20,10 @@ export class SocketService {
     this.socket.on('train', (msg) => {
       let message:Message = new Message(msg.content);
       if (message.isReduxMessage()) {
-        console.log('msg', msg);
-
-
-        this.logger.info(msg);
-        //this.ngRedux.dispatch(message);
+        this.logger.debug(msg);
+        this.ngRedux.dispatch(message);
       } else {
-        this.logger.warn('Error', msg);
+        this.logger.warn('Unknown message type', msg);
       }
     });
   }

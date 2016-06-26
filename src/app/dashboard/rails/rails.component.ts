@@ -3,8 +3,8 @@ import {Step} from "./step.directive";
 import {RailsActions} from "./rails.actions";
 import {select} from "ng2-redux/lib/index";
 import {Observable} from "rxjs/Rx";
-import {Train} from "../../models/train";
 import {RailsState} from "../../store/index";
+import {Train} from "./rails.models";
 
 @Component({
   selector: 'rails',
