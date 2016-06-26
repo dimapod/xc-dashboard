@@ -14,7 +14,7 @@ module.exports = (server, rabbitHandler) => {
         socket.emit('time message', dateMsg);
       } else {
         var obstacleType = (msgTypeRoll>0.2)?'cow':(msgTypeRoll>0.1)?'poney':'unicorn';
-        socket.emit('OBSTACLE_DETECTION', obstacleType);
+        socket.emit('dashboard', {content:JSON.stringify({type:'WARNING_DISPLAY', obstacleType:obstacleType})});
       }
     }, 5000);
 

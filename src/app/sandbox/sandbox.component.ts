@@ -48,9 +48,6 @@ export class SandboxComponent {
     // this.socketService.onTimeMessage((timeMsg:string) => {
     //   this.socketData.unshift('Time message - ' + timeMsg);
     // });
-    //this.socketService.onObstacleMessage((obstacleMsg:any) => {
-    //  this.socketData.unshift('Obstacle message - ' + obstacleMsg);
-    //});
   }
 
   httpTest() {

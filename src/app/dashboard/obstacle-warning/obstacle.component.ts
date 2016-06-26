@@ -1,14 +1,17 @@
 import {Component, ElementRef, Renderer} from "@angular/core";
-import {SocketService} from "../../communication/socket.service.ts";
+import {select} from "ng2-redux/lib/index";
+import {Observable} from "rxjs/Observable";
+import {ObstacleWarningState} from "../../store/index";
+import {ObstacleActions} from "./obstacle.actions";
 
 @Component({
   selector: 'obstacle-display',
   template: `
     <h2>Attention! {{obstacleLabel}} se trouve sur la voie.</h2>
     <div class="animal-icon" [ngClass]="getAnimalIconClass()"></div>
-    <button (click)="hide()" class="continue-button">Continuer</button>
+    <button (click)="obstacleActions.dismissWarning()" class="continue-button">Continuer</button>
   `,
-  providers: [SocketService],
+  providers: [ObstacleActions],
   directives: [],
   pipes: [],
   styles: [
@@ -54,15 +57,17 @@ export class ObstacleDisplayComponent {
     unicorn:'Une licorne'
   };
 
-  constructor( private socketService:SocketService, private element:ElementRef, private renderer:Renderer) {
+  @select('obstacleWarning') obstacleWarning$:Observable<ObstacleWarningState>;
+
+  constructor( private obstacleActions:ObstacleActions, private element:ElementRef, private renderer:Renderer) {
     this.hide();
   }
 
   ngOnInit() {
-    this.socketService.onObstacleMessage((obstacleMsg:any) => {
-      this.obstacleType  = obstacleMsg;
-      this.obstacleLabel = this.obstacleLabelMap[obstacleMsg];
-      this.display();
+    this.obstacleWarning$.subscribe((data:ObstacleWarningState) => {
+      this.obstacleType  = data.obstacleType;
+      this.obstacleLabel = this.obstacleLabelMap[data.obstacleType];
+      (data.isDisplayed)?this.display():this.hide();
     });
   }
 

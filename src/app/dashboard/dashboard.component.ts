@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation} from "@angular/core";
 import {RailsComponent} from "./rails/rails.component";
 import {VoteCounterComponent} from "./votes/vote-counter/vote-counter.component";
-import {ObstacleDisplayComponent} from "./obstacle-warning/obstacle-display.component";
+import {ObstacleDisplayComponent} from "./obstacle-warning/obstacle.component";
 
 @Component({
   selector: 'dashboard',

@@ -2,6 +2,7 @@ export interface RootState {
   rails:RailsState;
   chart:ChartState;
   votes:VotesState;
+  obstacleWarning:ObstacleWarningState;
 }
 
 export interface RailsState {
@@ -27,6 +28,12 @@ export interface VotesCountState {
 export interface VotesThroughputState {
 }
 
+
+export interface ObstacleWarningState {
+  obstacleType:string,
+  isDisplayed:boolean,
+}
+
 export class InitialState {
   static getInitialState():RootState {
     return {
@@ -36,7 +43,8 @@ export class InitialState {
         distribution: [0, 0],
         counter: {mobile: 10, sms: 20, twitter: 30},
         throughput: {}
-      }
+      },
+      obstacleWarning:{obstacleType:'', isDisplayed:false}
     };
   }
 }
