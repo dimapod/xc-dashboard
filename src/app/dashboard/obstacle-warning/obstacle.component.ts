@@ -14,38 +14,7 @@ import {ObstacleActions} from "./obstacle.actions";
   providers: [ObstacleActions],
   directives: [],
   pipes: [],
-  styles: [
-    `
-    :host {
-      position:fixed;
-      top:25%;
-      left:25%;
-      width:50%;
-      text-align:center;
-      padding:1em;
-      border: 1px solid black;
-      background-color:#FFFFFF;
-      border-radius:0.5em;
-    }
-
-    .animal-icon {
-      height:100px;
-      margin-bottom: 0.5em;
-    }
-    .my-cow {
-      background: url(assets/img/warning-cow.svg) no-repeat center;
-      background-size: contain;
-    }
-    .my-poney {
-      background: url(assets/img/warning-horse.svg) no-repeat center;
-      background-size: contain;
-    }
-    .my-unicorn {
-      background: url(assets/img/warning-unicorn.svg) no-repeat center;
-      background-size: contain;
-    }
-    `
-  ]
+  styles:  [require('./obstacle.component.css')]
 })
 export class ObstacleDisplayComponent {
   name = 'obstacle display';
