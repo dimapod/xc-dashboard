@@ -10,8 +10,14 @@ import {VoteCounterChart} from "./vote-counter.service";
   directives: [CHART_DIRECTIVES],
   providers: [VoteCounterChart],
   template: `
+    <div class="vote-counter-chart">
       <chart [options]="options" (load)="saveInstance($event.context)"></chart>
-  `
+    </div>
+  `,
+  styles: [
+    `
+    `
+  ]
 })
 export class VoteCounterComponent {
   options:Object;

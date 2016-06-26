@@ -6,11 +6,13 @@ export class VoteCounterChart {
   options:any = {
     title: {text: 'Votes'},
     chart: {
-      type: 'column'
+      type: 'column',
+      width: 300
     },
     yAxis: {
       min: 0,
       max: 100,
+      title: {text: null},
       stackLabels: {
         enabled: true,
         style: {
@@ -24,7 +26,7 @@ export class VoteCounterChart {
     },
     legend: {
       align: 'right',
-      x: -30,
+      x: -10,
       verticalAlign: 'top',
       y: 25,
       floating: true,
