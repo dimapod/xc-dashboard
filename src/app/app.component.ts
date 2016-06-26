@@ -3,7 +3,7 @@ import {RouteConfig} from "@angular/router-deprecated";
 import {AsyncPipe} from "@angular/common";
 import {NgRedux} from "ng2-redux/lib";
 import {Logger} from "angular2-logger/core";
-import {RootState} from "./store";
+import {RootState, InitialState} from "./store";
 import reducer from './reducers';
 import {SocketService} from "./communication/socket.service";
 import {SandboxComponent} from "./sandbox/sandbox.component";
@@ -38,13 +38,6 @@ export class App {
     logger.level = logger.Level.LOG;
 
     // Redux Store
-    this.ngRedux.configureStore(
-      reducer,
-      {
-        rails: {direction: 'left'},
-        chart: {votes: [13, 53]}
-      },
-      []
-    );
+    this.ngRedux.configureStore(reducer, InitialState.getInitialState(), []);
   }
 }
