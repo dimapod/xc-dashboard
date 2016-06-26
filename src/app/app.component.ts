@@ -9,6 +9,7 @@ import {SocketService} from "./communication/socket.service";
 import {SandboxComponent} from "./sandbox/sandbox.component";
 import {ChartSandboxComponent} from "./sandbox/charts/charts.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {SimulationComponent} from "./simulation/simulation.component";
 
 @Component({
   selector: 'app',
@@ -30,7 +31,8 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 @RouteConfig([
   {path: '/', name: 'Dashboard', component: DashboardComponent, useAsDefault: true},
   {path: '/sandbox', name: 'Sandbox', component: SandboxComponent},
-  {path: '/charts', name: 'Charts', component: ChartSandboxComponent}
+  {path: '/charts', name: 'Charts', component: ChartSandboxComponent},
+  {path: '/simulation', name: 'Simulation', component: SimulationComponent}
 ])
 export class App {
   constructor(private ngRedux:NgRedux<RootState>, private logger:Logger, private socketService:SocketService) {

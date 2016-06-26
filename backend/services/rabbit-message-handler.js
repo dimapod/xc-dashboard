@@ -6,7 +6,8 @@ var rabbitUrl = 'amqp://' + user + ':' + pwd + '@' + host;
 var open = require('amqplib').connect(rabbitUrl);
 var debug = require('debug')('dashboard-backend:server');
 
-module.exports = (io) => {
+module.exports = {
+  init:(io)=> {
 // Consumer
   open.then((conn) => {
 
@@ -27,6 +28,16 @@ module.exports = (io) => {
 
     return ok;
   }).then(null, console.warn);
-};
-
+},
+  sendToRabbit:(data)=>{
+    open.then((conn)=>{
+      return conn.createChannel();
+    }).then((ch)=>{
+      return ch.assertQueue(queueName).then(function(ok) {
+        debug('simulation : ',data);
+        return ch.sendToQueue(queueName, new Buffer(data));
+      });
+    }).catch(console.warn);
+  }
+}
 

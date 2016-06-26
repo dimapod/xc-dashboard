@@ -29,12 +29,12 @@ server.on('listening', onListening);
 /**
  * Create Socketserver
  */
-var io = socketServer(server);
+var io = socketServer(server, rabbitHandler);
 
 /**
  * Create Rabbit Handler
  */
-var rabbit = rabbitHandler(io);
+//var rabbit = rabbitHandler.init(io);
 
 
 /**

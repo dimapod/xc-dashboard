@@ -1,8 +1,9 @@
 var socket = require('socket.io');
 var debug = require('debug')('dashboard-backend:socket');
 
-module.exports = (server) => {
+module.exports = (server, rabbitHandler) => {
   var io = socket.listen(server);
+
 
   io.sockets.on('connection', (socket) => {
 
@@ -20,12 +21,19 @@ module.exports = (server) => {
 
     socket.on('train', (data) => {
       debug('Receive: ' + data);
-    })
+    });
+
+    socket.on('dashboard', (data)=>{
+      debug('receive-from-dashboard : ', data);
+      rabbitHandler.sendToRabbit(data);
+    });
   });
 
   io.sockets.on('train', (data)=> {
     debug('receive : ', data);
   });
+
+  rabbitHandler.init(io);
 
   return io;
 };

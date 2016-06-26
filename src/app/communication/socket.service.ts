@@ -25,4 +25,8 @@ export class SocketService {
       }
     });
   }
+
+  pushToServer(data:any){
+    this.socket.emit('dashboard',data);
+  }
 }
