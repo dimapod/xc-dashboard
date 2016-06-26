@@ -23,10 +23,15 @@
 * `docker run -d --hostname my-rabbit -e RABBITMQ_DEFAULT_USER=xebia -e RABBITMQ_DEFAULT_PASS=xebia2015 --name rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management`
 
 ####  Push Message on RabbitMQ
- ##### For train add property 'type' with value 'train'
-* move train message example : {"train":"01" ,"step": "pos_1_step_2"}
 
-##### For vote add property 'type' with value 'vote'
-* vote  message example : [55.8, 87.45]
-
-
+##### Vote 'VOTE_TRAIN_CHOICE' :
+```
+{
+  "type": "VOTE_TRAIN_CHOICE",
+  "payload": {
+    "trainId": 1,
+    "media": "MOBILE",
+    "count": 1
+  }
+}
+```

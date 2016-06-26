@@ -15,7 +15,7 @@ export class SocketService {
   }
 
   subscribe() {
-    this.socket.on('train', (msg) => {
+    this.socket.on('dashboard', (msg) => {
       let message:any = JSON.parse(msg.content);
       if (message.type) {
         this.logger.debug('Message', JSON.stringify(message));
