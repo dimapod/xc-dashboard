@@ -28,20 +28,12 @@ module.exports = (server, rabbitHandler) => {
       clearInterval(id);
     });
     */
-
-    socket.on('train', (data) => {
-      debug('Receive: ' + data);
-    });
-
     socket.on('dashboard', (data)=>{
       debug('receive-from-dashboard : ', data);
       rabbitHandler.sendToRabbit(data);
     });
   });
 
-  io.sockets.on('train', (data)=> {
-    debug('receive : ', data);
-  });
 
   rabbitHandler.init(io);
 
