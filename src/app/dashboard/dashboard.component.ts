@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation} from "@angular/core";
 import {RailsComponent} from "./rails/rails.component";
 import {VoteCounterComponent} from "./votes/vote-counter/vote-counter.component";
-import {ObstacleDisplayComponent} from "./obstacle-warning/obstacle.component";
+import {ObstacleComponent} from "./obstacle/obstacle.component";
 
 @Component({
   selector: 'dashboard',
@@ -9,10 +9,10 @@ import {ObstacleDisplayComponent} from "./obstacle-warning/obstacle.component";
     <h2>Dashboard</h2>
     <rails></rails>
     <vote-counter></vote-counter>
-    <obstacle-display></obstacle-display>
+    <obstacle></obstacle>
   `,
   providers: [],
-  directives: [RailsComponent, VoteCounterComponent, ObstacleDisplayComponent],
+  directives: [RailsComponent, VoteCounterComponent, ObstacleComponent],
   pipes: [],
   encapsulation: ViewEncapsulation.None,
   styles: [``]

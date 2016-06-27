@@ -13,7 +13,10 @@ export default (state:ObstacleWarningState={obstacleType:'', isDisplayed:false},
 }
 
 function displayWarning(state:ObstacleWarningState, action) {
-  return Object.assign({}, state, {obstacleType:action.obstacleType, isDisplayed:true});
+  if(action && action.payload){
+    return Object.assign({}, state, {obstacleType:action.payload.obstacleType, isDisplayed:true});
+  }
+  return state;
 }
 
 function hideWarning(state:ObstacleWarningState) {

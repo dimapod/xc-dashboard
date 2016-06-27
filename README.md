@@ -35,3 +35,21 @@
   }
 }
 ```
+
+##### detection d'une vache  'OBSTACLE_DETECTION' :
+```
+{
+  "type": "OBSTACLE_DETECTION",
+  "payload": {
+    "obstacle": true,
+    "obstacleType":"COW"
+  }
+}
+```
+
+##### retrait d'obstacle 'OBSTACLE_CLEARED' :
+```
+{
+  "type": "OBSTACLE_CLEARED"
+}
+```

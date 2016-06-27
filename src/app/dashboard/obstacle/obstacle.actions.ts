@@ -7,8 +7,8 @@ export class ObstacleActions {
   constructor(private ngRedux:NgRedux<RootState>) {
   }
 
-  static WARNING_DISPLAY:string = 'WARNING_DISPLAY';
-  static WARNING_DISMISS:string = 'WARNING_DISMISS';
+  static WARNING_DISPLAY:string = 'OBSTACLE_DETECTION';
+  static WARNING_DISMISS:string = 'OBSTACLE_CLEARED';
 
 
   dismissWarning():void {

@@ -13,8 +13,11 @@ module.exports = (server, rabbitHandler) => {
         var dateMsg = JSON.stringify(new Date());
         socket.emit('time message', dateMsg);
       } else {
-        var obstacleType = (msgTypeRoll>0.2)?'cow':(msgTypeRoll>0.1)?'poney':'unicorn';
-        socket.emit('dashboard', {content:JSON.stringify({type:'WARNING_DISPLAY', obstacleType:obstacleType})});
+        var obstacleType = (msgTypeRoll>0.2)?'COW':(msgTypeRoll>0.1)?'PONEY':'UNICORN';
+        socket.emit('dashboard', {content:JSON.stringify({type:'OBSTACLE_DETECTION', payload: {
+          obstacle: true,
+          obstacleType:obstacleType
+        }})});
       }
     }, 5000);
 
