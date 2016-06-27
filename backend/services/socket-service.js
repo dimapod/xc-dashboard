@@ -6,7 +6,7 @@ module.exports = (server, rabbitHandler) => {
 
 
   io.sockets.on('connection', (socket) => {
-
+    /*
     var id = setInterval(() => {
       var msgTypeRoll = Math.random(1);
       if(msgTypeRoll>0.5){
@@ -27,6 +27,7 @@ module.exports = (server, rabbitHandler) => {
       debug('socket.io connection close');
       clearInterval(id);
     });
+    */
 
     socket.on('train', (data) => {
       debug('Receive: ' + data);
