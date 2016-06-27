@@ -10,6 +10,7 @@ import {SandboxComponent} from "./sandbox/sandbox.component";
 import {ChartSandboxComponent} from "./sandbox/charts/charts.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {SimulationComponent} from "./simulation/simulation.component";
+const reduxLogger = require('redux-logger');
 
 @Component({
   selector: 'app',
@@ -35,7 +36,8 @@ import {SimulationComponent} from "./simulation/simulation.component";
   {path: '/simulation', name: 'Simulation', component: SimulationComponent}
 ])
 export class App {
-  constructor(private ngRedux:NgRedux<RootState>, private logger:Logger, private socketService:SocketService) {
+  constructor(private ngRedux:NgRedux<RootState>, private logger:Logger,
+              private socketService:SocketService) {
     // Logger level
     logger.level = logger.Level.LOG;
 
@@ -43,6 +45,6 @@ export class App {
     socketService.subscribe();
 
     // Redux Store
-    this.ngRedux.configureStore(reducer, InitialState.getInitialState(), []);
+    this.ngRedux.configureStore(reducer, InitialState.getInitialState(), [reduxLogger()]);
   }
 }
