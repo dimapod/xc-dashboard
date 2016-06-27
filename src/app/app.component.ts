@@ -45,6 +45,6 @@ export class App {
     socketService.subscribe();
 
     // Redux Store
-    this.ngRedux.configureStore(reducer, InitialState.getInitialState(), [reduxLogger()]);
+    this.ngRedux.configureStore(reducer, InitialState.getInitialState(), [reduxLogger()], [window.devToolsExtension()]);
   }
 }
