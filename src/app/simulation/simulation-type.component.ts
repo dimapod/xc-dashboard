@@ -10,7 +10,7 @@ import {Logger} from "angular2-logger/core";
   <form >
     <div class="message" >
           <label>Type : {{message.type}}</label><br/>
-          <label>Description : {{message.description}}</label><br/>
+          <!--<label>Description : {{message.description}}</label><br/>-->
           <textarea [(ngModel)]="message.payload"  rows="5" cols="60"></textarea>
         <br/>
           <button (click)="send()">send to rabbit</button>
@@ -38,8 +38,8 @@ export class SimulationTypeComponent {
 
   send() {
     let data = {type: this.message.type, payload: this.message.payload};
-    this.logger.debug(data);
-    this.socketService.pushToServer(data);
+    this.logger.debug(JSON.stringify(data));
+    this.socketService.pushToServer(JSON.stringify(data));
   }
 
 }

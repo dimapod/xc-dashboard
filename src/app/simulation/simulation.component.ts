@@ -23,11 +23,11 @@ export class SimulationComponent {
 
   constructor(public socketService:SocketService, public logger:Logger) {
     this.simulations = new Array();
-    this.simulations.push(new MessageType('VOTE_TRAIN_CHOICE', '{\\"trainId\\" : \\"<trainId>\\", \\"media\\": \\"<MOBILE | SMS |TWITTER>\\", \\"count\\": <1>}', ''));
-    this.simulations.push(new MessageType('OBSTACLE_DETECTION', '{\\"obstacle\\" : \\"true|false\\", \\"obstacleType\\": \\"<COW | RABBIT | PONEY>\\"}', ''));
-    this.simulations.push(new MessageType('OBSTACLE_CLEARED', '', ''));
-    this.simulations.push(new MessageType('TRAIN_POSITION', '{\\"trainId\\" : \\"<trainId>\\", \\"position\\": \\"<position>\\"}', ''));
-    this.simulations.push(new MessageType('KEYNOTE_STATE', '{\\"state\\": \\"<VOTE_ORDER_START | VOTE_TRAIN_END>\\"}', ''));
+    this.simulations.push(new MessageType('VOTE_TRAIN_CHOICE', JSON.stringify({trainId : '<trainId>', media: '<MOBILE | SMS |TWITTER>', count: '<1>'})));
+    this.simulations.push(new MessageType('OBSTACLE_DETECTION', JSON.stringify({obstacle : 'true|false', obstacleType: '<COW | RABBIT | PONEY>'})));
+    this.simulations.push(new MessageType('OBSTACLE_CLEARED', ''));
+    this.simulations.push(new MessageType('TRAIN_POSITION', JSON.stringify({trainId : '<trainId>', position: '<position>'})));
+    this.simulations.push(new MessageType('KEYNOTE_STATE', JSON.stringify({state: '<VOTE_ORDER_START | VOTE_TRAIN_END>'})));
   }
 
   onChoiceType(event) {
@@ -55,12 +55,10 @@ export class SimulationComponent {
 export class MessageType {
 
   public type:string;
-  public description:string;
   public payload:string;
 
-  constructor(type:string, description:string, payload:string) {
+  constructor(type:string, payload:string) {
     this.type = type;
-    this.description = description;
     this.payload = payload;
   }
 
