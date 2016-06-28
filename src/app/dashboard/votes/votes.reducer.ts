@@ -18,10 +18,7 @@ export default (state:VotesState = {
 }
 
 function voteTrainChoice(state:VotesState, action) {
-
-
   let payload:any = action.payload;
-  console.log('>>>>> voteTrainChoice', payload);
   if (payload.media) {
     let media = payload.media.toLowerCase();
     if (state.counter[media] && Number.isInteger(state.counter[media])) {
