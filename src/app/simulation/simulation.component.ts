@@ -23,10 +23,10 @@ export class SimulationComponent {
 
   constructor(public socketService:SocketService, public logger:Logger) {
     this.simulations = new Array();
-    this.simulations.push(new MessageType('VOTE_TRAIN_CHOICE', JSON.stringify({trainId : '<trainId>', media: '<MOBILE | SMS |TWITTER>', count: '<1>'})));
-    this.simulations.push(new MessageType('OBSTACLE_DETECTION', JSON.stringify({obstacle : 'true|false', obstacleType: '<COW | RABBIT | PONEY>'})));
+    this.simulations.push(new MessageType('VOTE_STATION', JSON.stringify({trainId: 1, media: 'MOBILE', count: '1'})));
+    this.simulations.push(new MessageType('OBSTACLE_DETECTION', JSON.stringify({obstacle: true, obstacleType: 'COW'})));
     this.simulations.push(new MessageType('OBSTACLE_CLEARED', ''));
-    this.simulations.push(new MessageType('TRAIN_POSITION', JSON.stringify({trainId : '<trainId>', position: '<position>'})));
+    this.simulations.push(new MessageType('TRAIN_POSITION', JSON.stringify({trainId: 1, position: '???'})));
     this.simulations.push(new MessageType('KEYNOTE_STATE', JSON.stringify({state: '<VOTE_ORDER_START | VOTE_TRAIN_END>'})));
   }
 

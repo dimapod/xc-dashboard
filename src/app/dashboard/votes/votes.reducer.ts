@@ -7,7 +7,7 @@ export default (state:VotesState = {
   throughput: {}
 }, action:any) => {
   switch (action.type) {
-    case VotesActions.VOTE_TRAIN_CHOICE:
+    case VotesActions.VOTE_STATION:
       return voteTrainChoice(state, action);
     case VotesActions.VOTE_TRAIN_ORDER:
       // TODO
@@ -18,7 +18,10 @@ export default (state:VotesState = {
 }
 
 function voteTrainChoice(state:VotesState, action) {
+
+
   let payload:any = action.payload;
+  console.log('>>>>> voteTrainChoice', payload);
   if (payload.media) {
     let media = payload.media.toLowerCase();
     if (state.counter[media] && Number.isInteger(state.counter[media])) {

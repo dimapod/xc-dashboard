@@ -27,7 +27,7 @@
 ##### Vote 'VOTE_TRAIN_CHOICE' :
 ```
 {
-  "type": "VOTE_TRAIN_CHOICE",
+  "type": "VOTE_STATION",
   "payload": {
     "trainId": 1,
     "media": "MOBILE",

@@ -1,8 +1,8 @@
 var queueName = 'xebicon';
 var user = process.env.RABBIT_USER || 'xebia';
 var pwd = process.env.RABBIT_PASSWORD || 'xebia2015';
-// var host = process.env.RABBIT_HOST || 'localhost';
-var host = process.env.RABBIT_HOST || '52.28.106.238';
+var host = process.env.RABBIT_HOST || 'localhost';
+//var host = process.env.RABBIT_HOST || '52.28.106.238';
 var rabbitUrl = 'amqp://' + user + ':' + pwd + '@' + host;
 var open = require('amqplib').connect(rabbitUrl);
 var debug = require('debug')('dashboard-backend:server');
