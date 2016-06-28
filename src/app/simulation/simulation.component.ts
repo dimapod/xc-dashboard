@@ -23,7 +23,7 @@ export class SimulationComponent {
 
   constructor(public socketService:SocketService, public logger:Logger) {
     this.simulations = new Array();
-    this.simulations.push(new MessageType('VOTE_STATION', JSON.stringify({trainId: 1, media: 'MOBILE', count: '1'})));
+    this.simulations.push(new MessageType('VOTE_STATION', JSON.stringify({trainId: 1, media: 'MOBILE', count: 1})));
     this.simulations.push(new MessageType('OBSTACLE_DETECTION', JSON.stringify({obstacle: true, obstacleType: 'COW'})));
     this.simulations.push(new MessageType('OBSTACLE_CLEARED', ''));
     this.simulations.push(new MessageType('TRAIN_POSITION', JSON.stringify({trainId: 1, position: '???'})));

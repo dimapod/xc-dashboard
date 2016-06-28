@@ -37,7 +37,7 @@ export class SimulationTypeComponent {
 
 
   send() {
-    let data = {type: this.message.type, payload: this.message.payload};
+    let data = {type: this.message.type, payload: JSON.parse(this.message.payload)};
     this.logger.debug(JSON.stringify(data));
     this.socketService.pushToServer(JSON.stringify(data));
   }
