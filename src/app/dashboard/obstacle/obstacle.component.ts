@@ -14,7 +14,7 @@ import {ObstacleActions} from "./obstacle.actions";
   providers: [ObstacleActions],
   directives: [],
   pipes: [],
-  styles:  [require('./obstacle.component.css')]
+  styles:  [require('./obstacle.component.scss')]
 })
 export class ObstacleComponent {
   name = 'obstacle display';

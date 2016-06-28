@@ -9,8 +9,8 @@ import {Logger} from "angular2-logger/core";
   template: `
   <form >
     <div class="message" >
-          <label>Type : {{message.type}}</label><br/>
-          <!--<label>Description : {{message.description}}</label><br/>-->
+          <label class="message-type">Type : {{message.type}}</label><br/>
+          <label class="message-description">Description : {{message.description}}</label><br/>
           <textarea [(ngModel)]="message.payload"  rows="5" cols="60"></textarea>
         <br/>
           <button (click)="send()">send to rabbit</button>
@@ -18,13 +18,8 @@ import {Logger} from "angular2-logger/core";
     </div>
     </form>
 `,
-  styles: [`
-    .message{
-       border: outset;
-       display: inline-block;
-       margin-top: 20px;
-    }
-  `]
+
+  styles: [require('./simulation-type.component.scss')]
 })
 export class SimulationTypeComponent {
 

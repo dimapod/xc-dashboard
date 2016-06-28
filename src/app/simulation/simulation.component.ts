@@ -7,9 +7,21 @@ import {SimulationTypeComponent} from "./simulation-type.component";
   selector: 'simulation',
   providers: [SocketService, Logger],
   directives: [SimulationTypeComponent],
+  styles: [`
+  .title-simulation{
+    margin-left:5%;
+  }
+  
+  .form-container{
+    display: inline-block;
+    margin-left:5%;
+    width:40%;
+    min-width:30em;
+  }
+`],
   template: `
-    <h1>Simulation</h1>
-    <div *ngFor="let type of simulations" class="form-row">
+    <h1 class="title-simulation">Simulation</h1>
+    <div *ngFor="let type of simulations" class="form-container">
       <simulation-type [message]="type"></simulation-type>
     </div>
 `
