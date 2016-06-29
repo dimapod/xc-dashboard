@@ -1,8 +1,13 @@
 export interface RootState {
+  keynoteState:KeynoteState;
   rails:RailsState;
   chart:ChartState;
   votes:VotesState;
   obstacle:ObstacleState;
+}
+
+export interface KeynoteState {
+  status:string,
 }
 
 export interface RailsState {

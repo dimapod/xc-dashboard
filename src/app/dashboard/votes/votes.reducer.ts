@@ -2,12 +2,14 @@ import {VotesState} from "../../store/index";
 import {VotesActions} from "./votes.actions";
 import {KeynoteActions} from "../keynote.actions";
 
-export default (state:VotesState = {
+const initialState:VotesState = {
   status: undefined,
   distribution: [0, 0],
-  counter: {mobile: 10, sms: 20, twitter: 30},
+  counter: {mobile: 1, sms: 1, twitter: 1},
   throughput: {}
-}, action:any):VotesState => {
+};
+
+export default (state:VotesState = initialState, action:any):VotesState => {
   switch (action.type) {
     case KeynoteActions.KEYNOTE_STATE:
       return voteState(state, action);
@@ -21,7 +23,7 @@ export default (state:VotesState = {
   }
 }
 
-function voteState(state:VotesState, action):VotesState {
+export function voteState(state:any, action):any {
   if (!action.payload) {
     return state;
   }
@@ -30,11 +32,11 @@ function voteState(state:VotesState, action):VotesState {
     case KeynoteActions.KEYNOTE_STATE_VOTE_STATION_START:
       return Object.assign({}, state, {status: 'VOTE_STATION'});
     case KeynoteActions.KEYNOTE_STATE_VOTE_STATION_END:
-      return Object.assign({}, state, {status: undefined});
+      return Object.assign({}, state, {status: 'VOTE_STATION_RESULT'});
     case KeynoteActions.KEYNOTE_STATE_VOTE_TRAIN_ORDER_START:
       return Object.assign({}, state, {status: 'VOTE_TRAIN_ORDER'});
     case KeynoteActions.KEYNOTE_STATE_VOTE_TRAIN_ORDER_END:
-      return Object.assign({}, state, {status: undefined});
+      return Object.assign({}, state, {status: 'VOTE_TRAIN_ORDER_RESULT'});
     default:
       return state;
   }

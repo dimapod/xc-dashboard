@@ -12,7 +12,13 @@ import {VoteCounterChart} from "./vote-counter.service";
       <chart [options]="options" (load)="saveInstance($event.context)"></chart>
     </div>
   `,
-  styles: [``]
+  styles: [`
+    :host {
+      display: block;
+      width: 300px;
+      margin: auto;
+    }
+`]
 })
 export class VoteCounterComponent {
   @Input() data:VotesCountState;
