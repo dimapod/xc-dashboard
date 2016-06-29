@@ -47,6 +47,6 @@ export class App {
     // Redux Store
     //noinspection TypeScriptUnresolvedVariable,TypeScriptUnresolvedFunction
     let enhancers = [window.devToolsExtension ? window.devToolsExtension() : f => f];
-    this.ngRedux.configureStore(reducer, InitialState.getInitialState(), [reduxLogger()], enhancers);
+    this.ngRedux.configureStore(reducer, {}, [reduxLogger()], enhancers);
   }
 }

@@ -1,18 +1,18 @@
 import {Component, ViewEncapsulation} from "@angular/core";
 import {RailsComponent} from "./rails/rails.component";
-import {VoteCounterComponent} from "./votes/vote-counter/vote-counter.component";
 import {ObstacleComponent} from "./obstacle/obstacle.component";
+import {VoteComponent} from "./votes/votes.component";
 
 @Component({
   selector: 'dashboard',
   template: `
     <h2>Dashboard</h2>
     <rails></rails>
-    <vote-counter></vote-counter>
+    <vote></vote>
     <obstacle></obstacle>
   `,
   providers: [],
-  directives: [RailsComponent, VoteCounterComponent, ObstacleComponent],
+  directives: [RailsComponent, VoteComponent, ObstacleComponent],
   pipes: [],
   encapsulation: ViewEncapsulation.None,
   styles: [``]

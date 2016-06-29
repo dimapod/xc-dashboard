@@ -1,8 +1,6 @@
-import {Component} from "@angular/core";
-import {CHART_DIRECTIVES} from 'angular2-highcharts';
-import {select} from "ng2-redux/lib/index";
-import {Observable} from "rxjs/Observable";
-import {VotesState, VotesCountState} from "../../../store/index";
+import {Component, Input} from "@angular/core";
+import {CHART_DIRECTIVES} from "angular2-highcharts";
+import {VotesCountState} from "../../../store/index";
 import {VoteCounterChart} from "./vote-counter.service";
 
 @Component({
@@ -14,16 +12,13 @@ import {VoteCounterChart} from "./vote-counter.service";
       <chart [options]="options" (load)="saveInstance($event.context)"></chart>
     </div>
   `,
-  styles: [
-    `
-    `
-  ]
+  styles: [``]
 })
 export class VoteCounterComponent {
+  @Input() data:VotesCountState;
+
   options:Object;
   chart:any;
-
-  @select('votes') votes$:Observable<VotesState>;
 
   constructor(voteCounterChart:VoteCounterChart) {
     this.options = voteCounterChart.options;
@@ -31,13 +26,14 @@ export class VoteCounterComponent {
 
   saveInstance(chartInstance) {
     this.chart = chartInstance;
+    this.ngOnChanges();
+  }
 
-    this.votes$
-      .map((state:VotesState) => state.counter)
-      .subscribe((state:VotesCountState) => {
-        chartInstance.series[0].setData([state.mobile]);
-        chartInstance.series[1].setData([state.sms]);
-        chartInstance.series[2].setData([state.twitter]);
-      });
+  ngOnChanges() {
+    if (this.chart) {
+      this.chart.series[0].setData([this.data.mobile]);
+      this.chart.series[1].setData([this.data.sms]);
+      this.chart.series[2].setData([this.data.twitter]);
+    }
   }
 }

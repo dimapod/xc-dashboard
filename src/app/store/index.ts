@@ -29,24 +29,7 @@ export interface VotesCountState {
 export interface VotesThroughputState {
 }
 
-
 export interface ObstacleState {
   obstacleType:string,
   isDisplayed:boolean,
-}
-
-export class InitialState {
-  static getInitialState():RootState {
-    return {
-      rails: {direction: 'left'},
-      chart: {votes: [13, 53]},
-      votes: {
-        status: undefined,
-        distribution: [0, 0],
-        counter: {mobile: 10, sms: 20, twitter: 30},
-        throughput: {}
-      },
-      obstacle: {obstacleType: '', isDisplayed: false}
-    };
-  }
 }
