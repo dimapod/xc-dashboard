@@ -4,11 +4,11 @@ import {RootState} from "../../store/index";
 
 @Injectable()
 export class RailsActions {
-  constructor(private ngRedux:NgRedux<RootState>) {
-  }
-
   static TOGGLE_SWITCH:string = 'TOGGLE_SWITCH';
   static TRAIN_POSITION:string = 'TRAIN_POSITION';
+
+  constructor(private ngRedux:NgRedux<RootState>) {
+  }
 
   toggleSwitch():void {
     this.ngRedux.dispatch({type: RailsActions.TOGGLE_SWITCH});

@@ -1,13 +1,8 @@
 export interface RootState {
-  keynoteState:KeynoteState;
   rails:RailsState;
   chart:ChartState;
   votes:VotesState;
   obstacle:ObstacleState;
-}
-
-export interface KeynoteState {
-  value:string;
 }
 
 export interface RailsState {
@@ -19,6 +14,7 @@ export interface ChartState {
 }
 
 export interface VotesState {
+  status:string,
   distribution:Array<number>,
   counter:VotesCountState;
   throughput:VotesThroughputState
@@ -42,10 +38,10 @@ export interface ObstacleState {
 export class InitialState {
   static getInitialState():RootState {
     return {
-      keynoteState: {value: undefined},
       rails: {direction: 'left'},
       chart: {votes: [13, 53]},
       votes: {
+        status: undefined,
         distribution: [0, 0],
         counter: {mobile: 10, sms: 20, twitter: 30},
         throughput: {}

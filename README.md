@@ -24,7 +24,29 @@
 
 ####  Push Message on RabbitMQ
 
-##### Vote 'VOTE_TRAIN_CHOICE' :
+##### Votes 
+
+* KEYNOTE_STATE = VOTE_STATION_START :
+```
+{
+  "type": "KEYNOTE_STATE",
+  "payload": {
+     "value": "VOTE_STATION_START"
+  }
+}
+```
+
+* KEYNOTE_STATE = VOTE_STATION_END :
+```
+{
+  "type": "KEYNOTE_STATE",
+  "payload": {
+     "value": "VOTE_STATION_END"
+  }
+}
+```
+
+* Vote Station :
 ```
 {
   "type": "VOTE_STATION",
@@ -36,7 +58,9 @@
 }
 ```
 
-##### detection d'une vache  'OBSTACLE_DETECTION' :
+##### Obstacle detection (cow) :
+
+* Obstacle - COW :
 ```
 {
   "type": "OBSTACLE_DETECTION",
@@ -47,7 +71,7 @@
 }
 ```
 
-##### retrait d'obstacle 'OBSTACLE_CLEARED' :
+* Obstacle - cleared :
 ```
 {
   "type": "OBSTACLE_CLEARED"

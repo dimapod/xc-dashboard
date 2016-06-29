@@ -5,20 +5,19 @@ import {Logger} from "angular2-logger/core";
 
 @Component({
   selector: 'simulation-type',
-  providers:[SocketService, Logger],
+  providers: [SocketService, Logger],
   template: `
-  <form >
-    <div class="message" >
-          <label class="message-type">Type : {{message.type}}</label><br/>
-          <label class="message-description">Description : {{message.description}}</label><br/>
-          <textarea [(ngModel)]="message.payload"  rows="5" cols="60"></textarea>
+    <form >
+      <div class="message" >
+        <label class="message-type">Type : {{message.type}}</label><br/>
+        <label class="message-description">Description : {{message.description}}</label><br/>
+        <textarea [(ngModel)]="message.payload"  rows="5" cols="60"></textarea>
         <br/>
-          <button (click)="send()">send to rabbit</button>
+        <button (click)="send()">send to rabbit</button>
         <br/>
-    </div>
+      </div>
     </form>
 `,
-
   styles: [require('./simulation-type.component.scss')]
 })
 export class SimulationTypeComponent {
@@ -26,10 +25,8 @@ export class SimulationTypeComponent {
   @Input()
   message:MessageType;
 
-  constructor(public socketService:SocketService, public logger:Logger){
-
+  constructor(public socketService:SocketService, public logger:Logger) {
   }
-
 
   send() {
     let data = {type: this.message.type, payload: JSON.parse(this.message.payload)};

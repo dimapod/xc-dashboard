@@ -1,31 +1,30 @@
-$font-size-normal : 15px;
-$font-size-great : 20px;
+$font-size-normal: 15px;
+$font-size-great: 20px;
 
-
-.message{
-  width:100%;
+.message {
+  width: 100%;
   border: outset;
   display: block;
   margin-top: 20px;
-  border-radius:0.5em;
-  padding:1em;
-  font-size : $font-size-normal;
+  border-radius: 0.5em;
+  padding: 1em;
+  font-size: $font-size-normal;
 
   .message-type {
-    font-size : $font-size-great ;
-    margin-bottom:0.1em;
+    font-size: $font-size-great;
+    margin-bottom: 0.1em;
     display: block;
   }
 
   .message-description {
-    min-height:3em;
-    margin-bottom:0.1em;
+    min-height: 3em;
+    margin-bottom: 0.1em;
     display: block;
   }
 
-  textarea{
-    resize:none;
-    width:90%;
-    min-width:80%;
+  textarea {
+    resize: none;
+    width: 95%;
+    min-width: 80%;
   }
 }
