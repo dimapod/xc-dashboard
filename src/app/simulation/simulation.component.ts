@@ -1,12 +1,12 @@
-import {Component} from  "@angular/core";
-import {SocketService} from "../communication/socket.service";
+import {Component, OnInit} from "@angular/core";
 import {Logger} from "angular2-logger/core";
-import {SimulationTypeComponent} from "./simulation-type.component";
+import {SimulationItemComponent} from "./simulation-item.component";
+import {ConfigurationService} from "./configuration.service";
 ;
 @Component({
   selector: 'simulation',
-  providers: [SocketService, Logger],
-  directives: [SimulationTypeComponent],
+  providers: [Logger, ConfigurationService],
+  directives: [SimulationItemComponent],
   styles: [`
   .title-simulation{
     margin-left:5%;
@@ -22,45 +22,27 @@ import {SimulationTypeComponent} from "./simulation-type.component";
   template: `
     <h1 class="title-simulation">Simulation</h1>
     <div *ngFor="let type of simulations" class="form-container">
-      <simulation-type [message]="type"></simulation-type>
+      <simulation-item [message]="type"></simulation-item>
     </div>
 `
 })
-export class SimulationComponent {
+export class SimulationComponent implements OnInit {
 
-  messagesType:Array<string> = ['VOTE_TRAIN', 'OBSTACLE_DETECTION', 'TRAIN_POSITION', 'KEYNOTE_STATE'];
-  messageType:string;
-  payload:string;
-  simulations:Array<MessageType>;
+  simulations:Array<MessageType> = [];
 
-  constructor(public socketService:SocketService, public logger:Logger) {
-    this.simulations = new Array();
-    this.simulations.push(new MessageType('VOTE_STATION', JSON.stringify({trainId: 1, media: 'MOBILE', count: 1})));
-    this.simulations.push(new MessageType('OBSTACLE_DETECTION', JSON.stringify({obstacle: true, obstacleType: 'COW'})));
-    this.simulations.push(new MessageType('OBSTACLE_CLEARED', ''));
-    this.simulations.push(new MessageType('TRAIN_POSITION', JSON.stringify({trainId: 1, position: '???'})));
-    this.simulations.push(new MessageType('KEYNOTE_STATE', JSON.stringify({state: '<VOTE_ORDER_START | VOTE_TRAIN_END>'})));
+  constructor(private configurationService:ConfigurationService, private logger:Logger) {
   }
 
-  onChoiceType(event) {
-    this.logger.debug(this.messagesType);
-    switch (this.messageType) {
-      case 'VOTE_TRAIN':
-        break;
-      case 'OBSTACLE':
-        break;
-      case 'TRAIN_POSITION':
-        break;
-      case 'KEYNOTE_STATE':
-        break;
-
-    }
-  }
-
-  send() {
-    let data = {type: this.messageType, payload: this.payload};
-    this.logger.debug(data);
-    this.socketService.pushToServer(data);
+  ngOnInit() {
+    this.configurationService.loadConfiguration().subscribe(data => {
+        data.forEach(item => {
+          item.payload = JSON.stringify(item.payload);
+          console.log(item);
+          this.simulations.push(item);
+        });
+      },
+      (err)=>console.log(err),
+      ()=>console.log('done'));
   }
 }
 

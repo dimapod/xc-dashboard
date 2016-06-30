@@ -1,0 +1,7 @@
+[
+  {"type": "VOTE_STATION", "payload": {"trainId": 1, "media": "MOBILE", "count": 1}},
+  {"type": "OBSTACLE_DETECTION", "payload":{"obstacle": true, "obstacleType": "COW"}},
+  {"type": "OBSTACLE_CLEARED", "payload":""},
+  {"type": "TRAIN_POSITION", "payload":{"trainId": 1, "position": "???"}},
+  {"type": "KEYNOTE_STATE", "payload":{"state": "<VOTE_ORDER_START | VOTE_TRAIN_END>"}}
+]

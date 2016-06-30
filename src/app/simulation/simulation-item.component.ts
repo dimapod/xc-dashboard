@@ -4,7 +4,7 @@ import {SocketService} from "../communication/socket.service";
 import {Logger} from "angular2-logger/core";
 
 @Component({
-  selector: 'simulation-type',
+  selector: 'simulation-item',
   providers: [SocketService, Logger],
   template: `
     <form >
@@ -18,9 +18,9 @@ import {Logger} from "angular2-logger/core";
       </div>
     </form>
 `,
-  styles: [require('./simulation-type.component.scss')]
+  styles: [require('./simulation-item.component.scss')]
 })
-export class SimulationTypeComponent {
+export class SimulationItemComponent {
 
   @Input()
   message:MessageType;
