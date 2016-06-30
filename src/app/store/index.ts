@@ -4,7 +4,6 @@ export interface RootState {
   chart:ChartState;
   votes:VotesState;
   obstacle:ObstacleState;
-  trains:TrainsState;
 }
 
 export interface KeynoteState {
@@ -13,6 +12,7 @@ export interface KeynoteState {
 
 export interface RailsState {
   direction:string;
+  trains:Array<any>
 }
 
 export interface ChartState {
@@ -38,8 +38,4 @@ export interface VotesThroughputState {
 export interface ObstacleState {
   obstacleType:string,
   isDisplayed:boolean,
-}
-
-export interface TrainsState {
-  trains:Array<any>
 }

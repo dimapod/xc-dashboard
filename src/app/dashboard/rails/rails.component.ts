@@ -3,8 +3,7 @@ import {RailsActions} from "./rails.actions";
 import {select} from "ng2-redux/lib/index";
 import {Observable} from "rxjs/Rx";
 import {RailsState} from "../../store/index";
-import {TrainsState} from "../../store/index";
-import {Train} from "./train/train.models";
+import {Train} from "./train.models";
 
 @Component({
   selector: 'rails',
@@ -24,7 +23,6 @@ export class RailsComponent {
   data:string;
 
   @select('rails') rails$: Observable<RailsState>;
-  @select('trains') trains$: Observable<TrainsState>;
 
   constructor(public railsActions:RailsActions) {}
 
@@ -41,8 +39,9 @@ export class RailsComponent {
         }
       });
 
-    this.trains$
-      .subscribe((trains:TrainsState) => {
+    this.rails$
+      .map((railsState:RailsState) => railsState.trains)
+      .subscribe((trains:Array<any>) => {
           this.trains = trains.map((train) => new Train(train.id, train.position, train.color));
       });
   }
