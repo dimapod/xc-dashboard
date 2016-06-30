@@ -4,6 +4,7 @@ export interface RootState {
   chart:ChartState;
   votes:VotesState;
   obstacle:ObstacleState;
+  trains:TrainsState;
 }
 
 export interface KeynoteState {
@@ -37,4 +38,8 @@ export interface VotesThroughputState {
 export interface ObstacleState {
   obstacleType:string,
   isDisplayed:boolean,
+}
+
+export interface TrainsState {
+  trains:Array<any>
 }

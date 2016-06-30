@@ -11,7 +11,7 @@ import {ConfigurationService} from "./configuration.service";
   .title-simulation{
     margin-left:5%;
   }
-  
+
   .form-container{
     display: inline-block;
     margin-left:5%;
