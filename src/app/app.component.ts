@@ -1,9 +1,9 @@
 import {Component, ViewEncapsulation} from "@angular/core";
-import {RouteConfig} from "@angular/router-deprecated";
+import {RouteConfig, RouteDefinition} from "@angular/router-deprecated";
 import {AsyncPipe} from "@angular/common";
 import {NgRedux} from "ng2-redux/lib";
 import {Logger} from "angular2-logger/core";
-import {RootState, InitialState} from "./store";
+import {RootState} from "./store";
 import reducer from "./reducers";
 import {SocketService} from "./communication/socket.service";
 import {SandboxComponent} from "./sandbox/sandbox.component";
@@ -34,7 +34,7 @@ const reduxLogger = require('redux-logger');
   {path: '/sandbox', name: 'Sandbox', component: SandboxComponent},
   {path: '/charts', name: 'Charts', component: ChartSandboxComponent},
   {path: '/simulation', name: 'Simulation', component: SimulationComponent}
-])
+] as RouteDefinition[])
 export class App {
   constructor(private ngRedux:NgRedux<RootState>, private logger:Logger,
               private socketService:SocketService) {
@@ -43,10 +43,10 @@ export class App {
 
     // SocketIO
     socketService.subscribe();
+    const windowWrapper:any = window;
 
     // Redux Store
-    //noinspection TypeScriptUnresolvedVariable,TypeScriptUnresolvedFunction
-    let enhancers = [window.devToolsExtension ? window.devToolsExtension() : f => f];
-    this.ngRedux.configureStore(reducer, {}, [reduxLogger()], enhancers);
+    let enhancers = [windowWrapper.devToolsExtension ? windowWrapper.devToolsExtension() : f => f];
+    this.ngRedux.configureStore(reducer, {} as RootState, [reduxLogger()], enhancers);
   }
 }

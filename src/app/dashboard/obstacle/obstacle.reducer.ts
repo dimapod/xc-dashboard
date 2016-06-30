@@ -1,7 +1,7 @@
-import {ObstacleWarningState} from "../../store/index";
+import {ObstacleState} from "../../store/index";
 import {ObstacleActions} from "./obstacle.actions";
 
-export default (state:ObstacleWarningState={obstacleType:'', isDisplayed:false}, action:any) => {
+export default (state:ObstacleState={obstacleType:'', isDisplayed:false}, action:any) => {
   switch (action.type) {
     case ObstacleActions.WARNING_DISPLAY:
       return displayWarning(state, action);
@@ -12,13 +12,13 @@ export default (state:ObstacleWarningState={obstacleType:'', isDisplayed:false},
   }
 }
 
-function displayWarning(state:ObstacleWarningState, action) {
+function displayWarning(state:ObstacleState, action) {
   if(action && action.payload){
     return Object.assign({}, state, {obstacleType:action.payload.obstacleType, isDisplayed:true});
   }
   return state;
 }
 
-function hideWarning(state:ObstacleWarningState) {
+function hideWarning(state:ObstacleState) {
   return Object.assign({}, state, {obstacleType:'', isDisplayed:false});
 }

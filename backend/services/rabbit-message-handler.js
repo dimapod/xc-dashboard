@@ -1,5 +1,5 @@
 var queueName = 'xebicon';
-var exchangeName = 'xebiconExchange'
+var exchangeName = 'xebiconExchange';
 var user = process.env.RABBIT_USER || 'xebia';
 var pwd = process.env.RABBIT_PASSWORD || 'xebia2015';
 // var host = process.env.RABBIT_HOST || 'localhost';
