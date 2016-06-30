@@ -4,12 +4,13 @@ import {select} from "ng2-redux/lib/index";
 import {Observable} from "rxjs/Rx";
 import {RailsState} from "../../store/index";
 import {Train} from "./train.models";
+import {RailsSwitch} from "./rails-moveable/rails-switch.directive";
 
 @Component({
   selector: 'rails',
   template: require('./rails.component.html'),
   providers: [RailsActions],
-  directives: [],
+  directives: [RailsSwitch],
   pipes: [],
   encapsulation: ViewEncapsulation.None,
   styles: [``]
@@ -17,28 +18,18 @@ import {Train} from "./train.models";
 export class RailsComponent {
 
 
-  switchLeft:string = 'none';
-  switchRight:string = 'block';
   trains:Array<Train> = [];
   data:string;
 
   @select('rails') rails$: Observable<RailsState>;
 
+  railSwitchState$:Observable<any> = this.rails$
+    .map((railsState:RailsState) => railsState.direction);
+
+
   constructor(public railsActions:RailsActions) {}
 
   ngOnInit() {
-    this.rails$
-      .map((railsState:RailsState) => railsState.direction)
-      .subscribe((data:string) => {
-        if (data === 'left') {
-          this.switchLeft = 'block';
-          this.switchRight = 'none';
-        } else {
-          this.switchLeft = 'none';
-          this.switchRight = 'block';
-        }
-      });
-
     this.rails$
       .map((railsState:RailsState) => railsState.trains)
       .subscribe((trains:Array<any>) => {
