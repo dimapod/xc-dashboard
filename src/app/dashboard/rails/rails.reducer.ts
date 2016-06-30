@@ -4,8 +4,8 @@ import {RailsState} from "../../store/index";
 const initialState:RailsState = {
   direction: 'left',
   trains: [
-    {id:'01', position:'pos_1_step_1', color:'url(#mx-gradient-ffcd28-1-ffa500-1-s-0)'},
-    {id:'02', position:'pos_2_step_1', color:'url(#mx-gradient-e1d5e7-1-8c6c9c-1-s-0)'}
+    {id:1, position:'pos_1_step_1'},
+    {id:2, position:'pos_2_step_1'}
   ]
 };
 

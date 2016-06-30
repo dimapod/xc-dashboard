@@ -77,3 +77,27 @@
   "type": "OBSTACLE_CLEARED"
 }
 ```
+
+##### Moving the train :
+
+* Moving train n°1 to step 3 of the top lane :
+```
+{
+  "type": "TRAIN_POSITION",
+  "payload": {
+    "trainId": 1, 
+    "position": "pos_1_step_3"
+  }
+}
+```
+
+* Moving train n°2 to step 2 of the mid (common) lane :
+```
+{
+  "type": "TRAIN_POSITION",
+  "payload": {
+    "trainId": 2, 
+    "position": "pos_0_step_2"
+  }
+}
+```

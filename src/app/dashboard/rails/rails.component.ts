@@ -1,19 +1,24 @@
-import {Component, ViewEncapsulation, QueryList, ViewChildren} from "@angular/core";
+import {Component, QueryList, ViewChildren} from "@angular/core";
 import {RailsActions} from "./rails.actions";
 import {select} from "ng2-redux/lib/index";
 import {Observable} from "rxjs/Rx";
 import {RailsState} from "../../store/index";
 import {Train} from "./train.models";
 import {RailsSwitch} from "./rails-moveable/rails-switch.directive";
+import {TrainDisplay} from "./rails-moveable/train-display.directive";
 
 @Component({
   selector: 'rails',
   template: require('./rails.component.html'),
   providers: [RailsActions],
-  directives: [RailsSwitch],
+  directives: [RailsSwitch, TrainDisplay],
   pipes: [],
-  encapsulation: ViewEncapsulation.None,
-  styles: [``]
+  styles: [`
+    :host {
+      text-align: center;
+      display: block;
+    }
+  `]
 })
 export class RailsComponent {
 
@@ -27,15 +32,11 @@ export class RailsComponent {
     .map((railsState:RailsState) => railsState.direction);
 
 
-  constructor(public railsActions:RailsActions) {}
+  trainsState$:Observable<any> = this.rails$
+    .map((railsState:RailsState) => railsState.trains);
 
-  ngOnInit() {
-    this.rails$
-      .map((railsState:RailsState) => railsState.trains)
-      .subscribe((trains:Array<any>) => {
-          this.trains = trains.map((train) => new Train(train.id, train.position, train.color));
-      });
-  }
+
+  constructor(public railsActions:RailsActions) {}
 
 
   isTrainDisplayedAt(positionRef:string){
