@@ -10,9 +10,18 @@ export interface KeynoteState {
   status:string,
 }
 
-export interface RailsState {
+export class SwitchState{
+  switchId:number;
   direction:string;
-  trains:Array<any>
+}
+export class TrainState{
+  id:number;
+  position:string;
+}
+
+export interface RailsState {
+  switchDirections:Array<SwitchState>;
+  trains:Array<TrainState>
 }
 
 export interface ChartState {

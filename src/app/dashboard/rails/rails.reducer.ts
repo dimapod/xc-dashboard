@@ -2,7 +2,10 @@ import {RailsActions} from "./rails.actions";
 import {RailsState} from "../../store/index";
 
 const initialState:RailsState = {
-  direction: 'left',
+  switchDirections: [
+    {switchId:1, direction:'left'},
+    {switchId:2, direction:'right'}
+  ],
   trains: [
     {id:1, position:'pos_1_step_1'},
     {id:2, position:'pos_2_step_1'}
@@ -13,7 +16,7 @@ const initialState:RailsState = {
 export default (state:RailsState = initialState, action:any) => {
   switch (action.type) {
     case RailsActions.TOGGLE_SWITCH:
-      return Object.assign({}, state, state.direction === 'left' ? {direction: 'right'} : {direction: 'left'});  // TODO: Make it enums
+      return toggleSwitches(state, action);
     case RailsActions.TRAIN_POSITION:
       return moveTrain(state, action);
     default:
@@ -21,6 +24,19 @@ export default (state:RailsState = initialState, action:any) => {
   }
 }
 
+function toggleSwitches(state:RailsState, action) {
+
+  if(action && action.payload){
+    var updatedTrainStates = state.switchDirections.map((railSwitch) => {
+      if(railSwitch.switchId===action.payload.switchId){
+        return Object.assign({}, railSwitch, {direction:action.payload.direction});
+      }
+      return railSwitch;
+    });
+    state = Object.assign({}, state, {switchDirections: updatedTrainStates});
+  }
+  return state;
+}
 function moveTrain(state:RailsState, action) {
 
   if(action && action.payload){

@@ -78,6 +78,23 @@
 }
 ```
 
+
+
+
+##### Changing the switch state :
+```
+{
+  "type": "TOGGLE_SWITCH", 
+  "payload": {
+    "switchId": 1, 
+    "direction": "right"
+  }
+}
+```
+
+
+
+
 ##### Moving the train :
 
 * Moving train n°1 to step 3 of the top lane :

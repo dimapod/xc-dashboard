@@ -15,8 +15,11 @@ import {TrainDisplay} from "./rails-moveable/train-display.directive";
   pipes: [],
   styles: [`
     :host {
+      margin-top:2em;
       text-align: center;
       display: block;
+      border-bottom: 2px solid #550055;
+      padding-bottom: 2em;
     }
   `]
 })
@@ -29,24 +32,14 @@ export class RailsComponent {
   @select('rails') rails$: Observable<RailsState>;
 
   railSwitchState$:Observable<any> = this.rails$
-    .map((railsState:RailsState) => railsState.direction);
+    .map((railsState:RailsState) => railsState.switchDirections);
 
 
   trainsState$:Observable<any> = this.rails$
     .map((railsState:RailsState) => railsState.trains);
 
 
-  constructor(public railsActions:RailsActions) {}
-
-
-  isTrainDisplayedAt(positionRef:string){
-    return !!this.trains.filter((train) => train.position=== positionRef)[0];
-  }
-
-  getTrainColorAt(positionRef:string){
-     var foundTrain = this.trains.filter((train) => train.position=== positionRef)[0];
-    return (foundTrain)?foundTrain.color:'';
-  }
+  constructor() {}
 }
 
 

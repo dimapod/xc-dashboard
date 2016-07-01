@@ -1,19 +1,24 @@
 import {Directive, Input, ElementRef, Renderer} from "@angular/core";
+import {SwitchState} from "../../../store/index"
 
 @Directive({
   selector: '[rails-switch]'
 })
 export class RailsSwitch {
-  @Input('rails-switch') switchCurrentPosition:string = undefined;
+  @Input('rails-switch') switchId:number = undefined;
+  @Input('rails-switch-command') switchesCurrentPositions:Array<SwitchState> = undefined;
   @Input('switch-direction') switchDirection:string = undefined;
 
   constructor(private element:ElementRef, private renderer:Renderer) {}
 
   ngOnChanges() {
-    if (this.switchCurrentPosition===this.switchDirection) {
-      this.display();
-    } else {
-      this.hide();
+    var matchingSwitchPosition = this.switchesCurrentPositions.filter((switchPosition)=> switchPosition.switchId ===this.switchId)[0];
+    if(!!matchingSwitchPosition){
+      if (matchingSwitchPosition.direction===this.switchDirection) {
+        this.display();
+      } else {
+        this.hide();
+      }
     }
   }
 
