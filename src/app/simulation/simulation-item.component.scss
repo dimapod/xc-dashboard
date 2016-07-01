@@ -1,13 +1,12 @@
-$font-size-normal: 15px;
-$font-size-great: 20px;
+$font-size-normal: 14px;
+$font-size-great: 16px;
 
 .message {
-  width: 100%;
-  border: outset;
+  border: 1px solid gray;
   display: block;
   margin-top: 20px;
   border-radius: 0.5em;
-  padding: 1em;
+  padding: 10px;
   font-size: $font-size-normal;
 
   .message-type {
@@ -16,15 +15,10 @@ $font-size-great: 20px;
     display: block;
   }
 
-  .message-description {
-    min-height: 3em;
-    margin-bottom: 0.1em;
-    display: block;
-  }
-
   textarea {
     resize: none;
     width: 95%;
-    min-width: 80%;
+    min-width: 95%;
+    max-width: 95%;
   }
 }

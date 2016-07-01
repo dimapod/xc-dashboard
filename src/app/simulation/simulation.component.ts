@@ -2,23 +2,22 @@ import {Component, OnInit} from "@angular/core";
 import {Logger} from "angular2-logger/core";
 import {SimulationItemComponent} from "./simulation-item.component";
 import {ConfigurationService} from "./configuration.service";
-;
+
 @Component({
   selector: 'simulation',
   providers: [Logger, ConfigurationService],
   directives: [SimulationItemComponent],
   styles: [`
-  .title-simulation{
-    margin-left:5%;
-  }
-
-  .form-container{
-    display: inline-block;
-    margin-left:5%;
-    width:40%;
-    min-width:30em;
-  }
-`],
+    .title-simulation {
+      margin-left: 10px;
+    }
+  
+    .form-container {
+      display: inline-block;
+      margin-left: 10px;
+      width: 300px;
+    }
+  `],
   template: `
     <h1 class="title-simulation">Simulation</h1>
     <div *ngFor="let type of simulations" class="form-container">

@@ -10,11 +10,8 @@ import {Logger} from "angular2-logger/core";
     <form >
       <div class="message" >
         <label class="message-type">Type : {{message.type}}</label><br/>
-        <label class="message-description">Description : {{message.description}}</label><br/>
         <textarea [(ngModel)]="message.payload"  rows="5" cols="60"></textarea>
-        <br/>
         <button (click)="send()">send to rabbit</button>
-        <br/>
       </div>
     </form>
 `,

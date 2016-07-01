@@ -14,7 +14,7 @@ export default (state:VotesState = initialState, action:any):VotesState => {
     case KeynoteActions.KEYNOTE_STATE:
       return voteState(state, action);
     case VotesActions.VOTE_STATION:
-      return voteTrainChoice(state, action);
+      return voteCompute(state, action);
     case VotesActions.VOTE_TRAIN_ORDER:
       // TODO
       return state;
@@ -27,7 +27,6 @@ export function voteState(state:any, action):any {
   if (!action.payload) {
     return state;
   }
-
   switch (action.payload.value) {
     case KeynoteActions.KEYNOTE_STATE_VOTE_STATION_START:
       return Object.assign({}, state, {status: 'VOTE_STATION'});
@@ -42,19 +41,20 @@ export function voteState(state:any, action):any {
   }
 }
 
-function voteTrainChoice(state:VotesState, action):VotesState {
+function voteCompute(state:VotesState, action):VotesState {
   if (state.status !== 'VOTE_STATION' && state.status !== 'VOTE_TRAIN_ORDER') {
     return state;
   }
 
-  let payload:any = action.payload;
+  const payload:any = action.payload;
   if (payload.media) {
-    let media = payload.media.toLowerCase();
+    const media = payload.media.toLowerCase();
     if (state.counter[media] && Number.isInteger(state.counter[media])) {
-      let cloneCounter = Object.assign({}, state.counter);
-      let delta = (payload.count || 1);
+      const cloneCounter = Object.assign({}, state.counter);
+      const delta = (payload.count || 1);
       cloneCounter[media] = cloneCounter[media] + (delta > 0 ? delta : 0);
-      return Object.assign({}, state, {counter: cloneCounter});
+      const distribution = [state.distribution[0] + (payload.id === 1 ? 1 : 0) , state.distribution[1] + (payload.id === 2 ? 1 : 0)];
+      return Object.assign({}, state, {counter: cloneCounter}, {distribution});
     }
   }
   return state;

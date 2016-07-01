@@ -18,7 +18,6 @@ export class SocketService {
     this.socket.on('dashboard', (msg) => {
       let message:any = JSON.parse(msg.content);
       if (message.type) {
-        this.logger.debug('Message', JSON.stringify(message));
         this.ngRedux.dispatch(message);
       } else {
         this.logger.warn('Unknown message type', msg);

@@ -42,26 +42,26 @@ export class VoteCounterChart {
       column: {
         stacking: 'normal',
         dataLabels: {
-          enabled: true,
-          color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
-          style: {
-            textShadow: '0 0 3px black'
-          }
+          enabled: false,
+          // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+          // style: {
+          //   textShadow: '0 0 3px black'
+          // }
         }
       }
     },
     series: [
       {
         name: 'Mobile',
-        data: [24],
+        data: [0],
       },
       {
         name: 'SMS',
-        data: [10],
+        data: [0],
       },
       {
         name: 'Twitter',
-        data: [18],
+        data: [0],
       }
     ]
   };

@@ -12,7 +12,7 @@ import {WelcomeComponent} from "./welcome/welcome.component";
   template: `
     <rails></rails>
     <welcome *ngIf="status === 'KEYNOTE_BEGIN'"> </welcome>
-    <vote *ngIf="status === 'VOTE_STATION'"></vote>
+    <vote *ngIf="status === 'VOTE_STATION' || status === 'VOTE_STATION_RESULT'"></vote>
     <obstacle></obstacle>
   `,
   providers: [],

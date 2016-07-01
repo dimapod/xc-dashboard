@@ -1,11 +1,17 @@
 [
-  {"type": "VOTE_STATION", "payload": {"trainId": 1, "media": "MOBILE", "count": 1}},
+  {"type": "KEYNOTE_STATE", "payload":{"value": "VOTE_STATION_START"}},
+  {"type": "KEYNOTE_STATE", "payload":{"value": "VOTE_STATION_END"}},
+  {"type": "VOTE_STATION", "payload": {"id": 1, "media": "MOBILE", "count": 1}},
+  {"type": "VOTE_STATION", "payload": {"id": 1, "media": "SMS", "count": 1}},
+  {"type": "VOTE_STATION", "payload": {"id": 1, "media": "TWITTER", "count": 1}},
+  {"type": "VOTE_STATION", "payload": {"id": 2, "media": "MOBILE", "count": 1}},
+  {"type": "VOTE_STATION", "payload": {"id": 2, "media": "SMS", "count": 1}},
+  {"type": "VOTE_STATION", "payload": {"id": 2, "media": "TWITTER", "count": 1}},
   {"type": "OBSTACLE_DETECTION", "payload":{"obstacle": true, "obstacleType": "COW"}},
   {"type": "OBSTACLE_CLEARED", "payload":"{}"},
   {"type": "TRAIN_POSITION", "payload":{"trainId": 1, "position": "pos_1_step_3"}},
   {"type": "TOGGLE_SWITCH", "payload":{"switchId": 1, "direction": "right"}},
   {"type": "TOGGLE_SWITCH", "payload":{"switchId": 1, "direction": "left"}},
   {"type": "TOGGLE_SWITCH", "payload":{"switchId": 2, "direction": "right"}},
-  {"type": "TOGGLE_SWITCH", "payload":{"switchId": 2, "direction": "left"}},
-  {"type": "KEYNOTE_STATE", "payload":{"state": "<VOTE_ORDER_START | VOTE_TRAIN_END>"}}
+  {"type": "TOGGLE_SWITCH", "payload":{"switchId": 2, "direction": "left"}}
 ]

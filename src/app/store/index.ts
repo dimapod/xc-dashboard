@@ -32,7 +32,7 @@ export interface VotesState {
   status:string,
   distribution:Array<number>,
   counter:VotesCountState;
-  throughput:VotesThroughputState
+  throughput:VotesThroughputState,
 }
 
 export interface VotesCountState {
