@@ -10,11 +10,11 @@ export interface KeynoteState {
   status:string,
 }
 
-export class SwitchState{
+export class SwitchState {
   switchId:number;
   direction:string;
 }
-export class TrainState{
+export class TrainState {
   id:number;
   position:string;
 }
@@ -42,6 +42,8 @@ export interface VotesCountState {
 }
 
 export interface VotesThroughputState {
+  accumulator:VotesCountState;
+  history:Array<VotesCountState>;
 }
 
 export interface ObstacleState {

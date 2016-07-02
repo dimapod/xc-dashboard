@@ -41,17 +41,35 @@ module.exports = {
     loaders: [
       {
         test: /\.ts$/,
-        loader: 'awesome-typescript-loader',
+        loaders: ['awesome-typescript-loader', 'angular2-template-loader'],
         exclude: [/\.(spec|e2e)\.ts$/]
       },
+
+      /*
+       * Json loader support for *.json files.
+       *
+       * See: https://github.com/webpack/json-loader
+       */
       {
         test: /\.json$/,
         loader: 'json-loader'
       },
+
+      /*
+       * to string and css loader support for *.css files
+       * Returns file content as string
+       *
+       */
       {
         test: /\.css$/,
-        loader: 'raw-loader'
+        loaders: ['to-string-loader', 'css-loader']
       },
+
+      /* Raw loader support for *.html
+       * Returns file content as string
+       *
+       * See: https://github.com/webpack/raw-loader
+       */
       {
         test: /\.html$/,
         loader: 'raw-loader',

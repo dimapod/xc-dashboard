@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, ViewEncapsulation} from "@angular/core";
 import {CHART_DIRECTIVES} from "angular2-highcharts";
 import {VotesCountState} from "../../../store/index";
 import {VoteCounterChart} from "./vote-counter.service";
@@ -7,18 +7,15 @@ import {VoteCounterChart} from "./vote-counter.service";
   selector: 'vote-counter',
   directives: [CHART_DIRECTIVES],
   providers: [VoteCounterChart],
+  encapsulation: ViewEncapsulation.None,
   template: `
-    <div class="vote-counter-chart">
       <chart [options]="options" (load)="saveInstance($event.context)"></chart>
-    </div>
   `,
   styles: [`
-    :host {
-      display: block;
-      width: 300px;
-      margin: auto;
+    .highcharts-container {
+      display: inline-block;
     }
-`]
+  `]
 })
 export class VoteCounterComponent {
   @Input() data:VotesCountState;
