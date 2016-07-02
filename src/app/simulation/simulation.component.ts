@@ -2,6 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {Logger} from "angular2-logger/core";
 import {SimulationItemComponent} from "./simulation-item.component";
 import {ConfigurationService} from "./configuration.service";
+import {SimulationMessage} from "./simulation.model";
+import {Observable} from "rxjs/Rx";
 
 @Component({
   selector: 'simulation',
@@ -20,39 +22,19 @@ import {ConfigurationService} from "./configuration.service";
   `],
   template: `
     <h1 class="title-simulation">Simulation</h1>
-    <div *ngFor="let type of simulations" class="form-container">
-      <simulation-item [message]="type"></simulation-item>
+    <div *ngFor="let simulation of simulationMessages|async" class="form-container">
+      <simulation-item [simulation]="simulation"></simulation-item>
     </div>
 `
 })
 export class SimulationComponent implements OnInit {
 
-  simulations:Array<MessageType> = [];
+  simulationMessages:Observable<Array<SimulationMessage>>;
 
-  constructor(private configurationService:ConfigurationService, private logger:Logger) {
+  constructor(private configurationService:ConfigurationService) {
   }
 
   ngOnInit() {
-    this.configurationService.loadConfiguration().subscribe(data => {
-        data.forEach(item => {
-          item.payload = JSON.stringify(item.payload);
-          console.log(item);
-          this.simulations.push(item);
-        });
-      },
-      (err)=>console.log(err),
-      ()=>console.log('done'));
+    this.simulationMessages = this.configurationService.loadConfiguration();
   }
-}
-
-export class MessageType {
-
-  public type:string;
-  public payload:string;
-
-  constructor(type:string, payload:string) {
-    this.type = type;
-    this.payload = payload;
-  }
-
 }
