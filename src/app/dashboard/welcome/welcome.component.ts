@@ -7,8 +7,8 @@ import {Component} from "@angular/core";
   `,
   directives: [],
   styles: [`
-    h2 {
-      color: blue;
+    h1 {
+      font-size: 4em;
     }
     span {
       color: blueviolet;

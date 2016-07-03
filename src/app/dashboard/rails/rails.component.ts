@@ -15,11 +15,9 @@ import {TrainDisplay} from "./rails-moveable/train-display.directive";
   pipes: [],
   styles: [`
     :host {
-      margin-top:2em;
       text-align: center;
       display: block;
-      border-bottom: 2px solid #550055;
-      padding-bottom: 2em;
+      border-bottom: 2px solid grey;
     }
   `]
 })
