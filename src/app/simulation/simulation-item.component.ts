@@ -9,8 +9,8 @@ import {SimulationMessage} from "./simulation.model";
   template: `
     <form>
       <div class="message" [ngStyle]="{'background-color': simulation.color}">
-        <strong class="message-type">{{simulation.name}}</strong><br/>
-        <textarea [(ngModel)]="simulation.json" rows="5" cols="60"></textarea>
+        <strong class="message-type">{{simulation.name}}</strong>
+        <textarea [(ngModel)]="simulation.json" rows="6" cols="60"></textarea>
         <button (click)="send(simulation.json)">Send to rabbit</button>
       </div>
     </form>

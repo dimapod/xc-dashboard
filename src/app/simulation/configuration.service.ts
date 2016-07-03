@@ -12,11 +12,12 @@ export class ConfigurationService {
   }
 
   loadConfiguration():Observable<Array<SimulationMessage>> {
+    //noinspection TypeScriptUnresolvedFunction
     return this.http.get(this.configFile)
       .map(res => res.json())
       .flatMap(res => Observable.from(res))
       .map((simulation:SimulationMessage) => {
-        simulation.json = JSON.stringify(simulation.message);
+        simulation.json = JSON.stringify(simulation.message, null, 4);
         return simulation
       })
       .reduce((acc, current) => [...acc, current], []);
