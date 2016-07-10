@@ -4,25 +4,45 @@ import {VotesCountState} from "../store/index";
 import {VoteCounterComponent} from "../dashboard/votes/vote-counter/vote-counter.component";
 import {VoteThroughputComponent} from "../dashboard/votes/vote-throughput/vote-throughput.component";
 import {BarChartComponent} from "../shared/bar-chart/bar-chart.component";
+import {KubernetesNode, KubernetesNodeComponent} from "../dashboard/high-availability";
 
 @Component({
   moduleId: module.id,
   selector: 'kitchen-sink',
-  directives: [WelcomeComponent, VoteCounterComponent, VoteThroughputComponent, BarChartComponent],
+  directives: [WelcomeComponent, VoteCounterComponent, VoteThroughputComponent, BarChartComponent, KubernetesNodeComponent],
   template: require('./kitchen-sink.component.html'),
   styles: [`
     h1.ks-label {
       text-align: center;
     }
     .ks-cmt {
-      border-top: 3px solid darkgreen;
       border-bottom: 3px solid burlywood;
+    }
+    
+    label {
+      display: block;
+      padding: 10px;
+      text-align: center;
+      margin: 5px;
+      border: 1px solid grey;
+      background: aliceblue;
     }
   `]
 })
 export class KitchenSinkComponent implements OnInit {
   constructor() {
   }
+
+  // kubernetes-node
+  kubernetesNodeData:KubernetesNode = {
+    name: "node-A",
+    state: "ON",
+    apps: [
+      {name: "app-name-1"},
+      {name: "app-name-2"}
+    ],
+    labels: [{name: 'label-1'}]
+  };
 
   // bar-chart
   barChartData:Array<number> = [51, 66];
