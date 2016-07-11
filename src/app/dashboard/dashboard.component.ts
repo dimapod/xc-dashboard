@@ -1,6 +1,7 @@
 import {Component, ViewEncapsulation} from "@angular/core";
 import {RailsComponent} from "./rails/rails.component";
 import {ObstacleComponent} from "./obstacle/obstacle.component";
+import {VideoDisplayComponent} from "./video-display/video-display.component";
 import {VoteComponent} from "./votes/votes.component";
 import {select} from "ng2-redux/lib/index";
 import {Observable} from "rxjs/Rx";
@@ -16,9 +17,10 @@ import {HotDeploymentComponent} from "./hot-deployment/hot-deployment.component"
     <vote *ngIf="status === 'VOTE_STATION' || status === 'VOTE_STATION_RESULT'"></vote>
     <hot-deployment *ngIf="status === 'HOT_DEPLOYMENT'"></hot-deployment>
     <obstacle></obstacle>
+    <video-display></video-display>
   `,
   providers: [],
-  directives: [RailsComponent, WelcomeComponent, VoteComponent, ObstacleComponent, HotDeploymentComponent],
+  directives: [RailsComponent, WelcomeComponent, VoteComponent, ObstacleComponent, HotDeploymentComponent, VideoDisplayComponent],
   pipes: [],
   encapsulation: ViewEncapsulation.None,
   styles: [``]

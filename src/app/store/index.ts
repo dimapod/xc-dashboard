@@ -5,6 +5,7 @@ export interface RootState {
   votes:VotesState;
   obstacle:ObstacleState;
   hotDeployment:HotDeploymentState;
+  train:TrainState;
 }
 
 export interface KeynoteState {
