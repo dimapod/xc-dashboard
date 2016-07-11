@@ -4,12 +4,12 @@ import {VotesCountState} from "../store/index";
 import {VoteCounterComponent} from "../dashboard/votes/vote-counter/vote-counter.component";
 import {VoteThroughputComponent} from "../dashboard/votes/vote-throughput/vote-throughput.component";
 import {BarChartComponent} from "../shared/bar-chart/bar-chart.component";
-import {KubernetesNode, KubernetesNodeComponent} from "../dashboard/high-availability";
+import {KubernetesNode, KubernetesNodeComponent, KubernetesComponent} from "../dashboard/high-availability";
 
 @Component({
   moduleId: module.id,
   selector: 'kitchen-sink',
-  directives: [WelcomeComponent, VoteCounterComponent, VoteThroughputComponent, BarChartComponent, KubernetesNodeComponent],
+  directives: [WelcomeComponent, VoteCounterComponent, VoteThroughputComponent, BarChartComponent, KubernetesComponent, KubernetesNodeComponent],
   template: require('./kitchen-sink.component.html'),
   styles: [`
     h1.ks-label {
@@ -32,6 +32,28 @@ import {KubernetesNode, KubernetesNodeComponent} from "../dashboard/high-availab
 export class KitchenSinkComponent implements OnInit {
   constructor() {
   }
+
+  // kubernetes
+  kubernetesData:Array<KubernetesNode> = [
+    {
+      name: "node-A",
+      state: "ON",
+      apps: [{name: "app-name-1"}, {name: "app-name-2"}, {name: "app-name-3"}],
+      labels: [{name: 'label-1'}, {name: 'label-2'}]
+    },
+    {
+      name: "node-B",
+      state: "OFF",
+      apps: [{name: "app-name-10"}],
+      labels: [{name: 'label-10'}, {name: 'label-20'}]
+    },
+    {
+      name: "node-C",
+      state: "ON",
+      apps: [{name: "app-name-100"}, {name: "app-name-200"}, {name: "app-name-300"}],
+      labels: [{name: 'label-100'}, {name: 'label-200'}]
+    }
+  ];
 
   // kubernetes-node
   kubernetesNodeData:KubernetesNode = {
