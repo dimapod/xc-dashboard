@@ -24,7 +24,8 @@ export class ObstacleComponent {
   obstacleLabelMap:Object = {
     COW:'Une vache',
     PONEY:'Un poney',
-    UNICORN:'Une licorne'
+    UNICORN:'Une licorne',
+    UNKNOWN_OBSTACLE:'Quelque chose'
   };
 
   @select('obstacle') obstacle$:Observable<ObstacleState>;
@@ -35,8 +36,9 @@ export class ObstacleComponent {
 
   ngOnInit() {
     this.obstacle$.subscribe((data:ObstacleState) => {
-      this.obstacleType  = data.obstacleType;
-      this.obstacleLabel = this.obstacleLabelMap[data.obstacleType];
+      this.obstacleType  = (this.obstacleLabelMap[data.obstacleType])?data.obstacleType:'UNKNOWN_OBSTACLE';
+      this.obstacleLabel = this.obstacleLabelMap[this.obstacleType];
+
       this.isDisplayed = data.isDisplayed;
     });
   }
