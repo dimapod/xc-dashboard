@@ -4,9 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const configureStore = require('./store/configureStore');
 
 var api = require('./routes/api');
-var rabbitHandler = require('./services/rabbit-message-handler');
 
 var app = express();
 
@@ -23,6 +23,10 @@ app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', api);
+
+// Redux
+
+global.store = configureStore();
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

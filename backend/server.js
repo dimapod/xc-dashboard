@@ -29,7 +29,7 @@ server.on('listening', onListening);
 /**
  * Create Socketserver
  */
-var io = socketServer(server, rabbitHandler);
+socketServer(server, rabbitHandler);
 
 /**
  * Create Rabbit Handler
