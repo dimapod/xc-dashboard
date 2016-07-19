@@ -1,0 +1,1 @@
+{"name":"Vote station tart", "message": {"type": "VOTE_STATION", "payload": {"trainId": 1, "media": "MOBILE", "count": 1}} },
