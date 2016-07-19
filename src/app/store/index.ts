@@ -4,6 +4,7 @@ export interface RootState {
   chart:ChartState;
   votes:VotesState;
   obstacle:ObstacleState;
+  hotDeployment:HotDeploymentState;
 }
 
 export interface KeynoteState {
@@ -50,3 +51,21 @@ export interface ObstacleState {
   obstacleType:string,
   isDisplayed:boolean,
 }
+
+export interface HotDeploymentState {
+  lamps:Array<LampState>;
+  services:Array<ServiceState>;
+}
+
+export interface LampState {
+  id:string,
+  color:number,
+}
+
+export interface ServiceState {
+  id:string,
+  version:string,
+  status:string
+}
+
+

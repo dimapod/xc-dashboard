@@ -6,10 +6,15 @@ import {RootState} from "../store/index";
 export class KeynoteActions {
   static KEYNOTE_STATE:string = 'KEYNOTE_STATE';
 
+  // Vote
   static KEYNOTE_STATE_VOTE_STATION_START:string = 'VOTE_STATION_START';
   static KEYNOTE_STATE_VOTE_STATION_END:string = 'VOTE_STATION_END';
   static KEYNOTE_STATE_VOTE_TRAIN_ORDER_START:string = 'VOTE_TRAIN_ORDER_START';
   static KEYNOTE_STATE_VOTE_TRAIN_ORDER_END:string = 'VOTE_TRAIN_ORDER_END';
+
+  // Hot-Deployment
+  static KEYNOTE_STATE_HOT_DEPLOYMENT_SHOW:string = 'HOT_DEPLOYMENT_SHOW';
+  static KEYNOTE_STATE_HOT_DEPLOYMENT_HIDE:string = 'HOT_DEPLOYMENT_HIDE';
 
   constructor(private ngRedux:NgRedux<RootState>) {
   }

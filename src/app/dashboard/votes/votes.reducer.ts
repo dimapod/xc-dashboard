@@ -1,6 +1,7 @@
 import {VotesState, VotesThroughputState, VotesCountState} from "../../store/index";
 import {VotesActions} from "./votes.actions";
 import {KeynoteActions} from "../keynote.actions";
+import {handleState} from "../keynote.reducer";
 
 const initialState:VotesState = {
   status: undefined,
@@ -12,29 +13,11 @@ const initialState:VotesState = {
 export default (state:VotesState = initialState, action:any):VotesState => {
   switch (action.type) {
     case KeynoteActions.KEYNOTE_STATE:
-      return voteState(state, action);
+      return handleState(state, action);
     case VotesActions.VOTE_STATION:
       return countVotes(state, action);
     case VotesActions.VOTE_TICK:
       return throughput(state, action);
-    default:
-      return state;
-  }
-}
-
-export function voteState(state:any, action):any {
-  if (!action.payload) {
-    return state;
-  }
-  switch (action.payload.value) {
-    case KeynoteActions.KEYNOTE_STATE_VOTE_STATION_START:
-      return Object.assign({}, state, {status: 'VOTE_STATION'});
-    case KeynoteActions.KEYNOTE_STATE_VOTE_STATION_END:
-      return Object.assign({}, state, {status: 'VOTE_STATION_RESULT'});
-    case KeynoteActions.KEYNOTE_STATE_VOTE_TRAIN_ORDER_START:
-      return Object.assign({}, state, {status: 'VOTE_TRAIN_ORDER'});
-    case KeynoteActions.KEYNOTE_STATE_VOTE_TRAIN_ORDER_END:
-      return Object.assign({}, state, {status: 'VOTE_TRAIN_ORDER_RESULT'});
     default:
       return state;
   }

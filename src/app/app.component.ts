@@ -6,10 +6,9 @@ import {Logger} from "angular2-logger/core";
 import {RootState} from "./store";
 import reducer from "./reducers";
 import {SocketService} from "./communication/socket.service";
-import {SandboxComponent} from "./sandbox/sandbox.component";
-import {ChartSandboxComponent} from "./sandbox/charts/charts.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {SimulationComponent} from "./simulation/simulation.component";
+import {KitchenSinkComponent} from "./kitchensink/kitchen-sink.component";
 const reduxLogger = require('redux-logger');
 
 @Component({
@@ -31,9 +30,8 @@ const reduxLogger = require('redux-logger');
 })
 @RouteConfig([
   {path: '/', name: 'Dashboard', component: DashboardComponent, useAsDefault: true},
-  {path: '/sandbox', name: 'Sandbox', component: SandboxComponent},
-  {path: '/charts', name: 'Charts', component: ChartSandboxComponent},
-  {path: '/simulation', name: 'Simulation', component: SimulationComponent}
+  {path: '/simulation', name: 'Simulation', component: SimulationComponent},
+  {path: '/kitchensink', name: 'KitchenSink', component: KitchenSinkComponent}
 ] as RouteDefinition[])
 export class App {
   constructor(private ngRedux:NgRedux<RootState>, private logger:Logger,

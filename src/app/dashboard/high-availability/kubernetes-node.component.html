@@ -1,0 +1,13 @@
+<div>
+  <div class="kubernetes-node" [ngClass]="{'node-off': data.state === 'OFF'}">
+    <div class="kubernetes-app-container">
+      <div class="kubernetes-app" *ngFor="let app of data.apps">{{ app.name }}</div>
+    </div>
+
+    <div class="kubernetes-label-container">
+      <div class="kubernetes-label" *ngFor="let label of data.labels">{{ label.name }}</div>
+    </div>
+  </div>
+
+  <div class="kubernetes-name">{{ data.name }}</div>
+</div>
