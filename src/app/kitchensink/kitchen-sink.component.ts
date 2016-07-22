@@ -5,11 +5,12 @@ import {VoteCounterComponent} from "../dashboard/votes/vote-counter/vote-counter
 import {VoteThroughputComponent} from "../dashboard/votes/vote-throughput/vote-throughput.component";
 import {BarChartComponent} from "../shared/bar-chart/bar-chart.component";
 import {KubernetesNode, KubernetesNodeComponent, KubernetesComponent} from "../dashboard/high-availability";
+import {VideoDisplayComponent} from "../dashboard/video-display/video-display.component";
 
 @Component({
   moduleId: module.id,
   selector: 'kitchen-sink',
-  directives: [WelcomeComponent, VoteCounterComponent, VoteThroughputComponent, BarChartComponent, KubernetesComponent, KubernetesNodeComponent],
+  directives: [WelcomeComponent, VoteCounterComponent, VoteThroughputComponent, BarChartComponent, KubernetesComponent, KubernetesNodeComponent, VideoDisplayComponent],
   template: require('./kitchen-sink.component.html'),
   styles: [`
     h1.ks-label {
@@ -18,7 +19,7 @@ import {KubernetesNode, KubernetesNodeComponent, KubernetesComponent} from "../d
     .ks-cmt {
       border-bottom: 3px solid burlywood;
     }
-    
+
     label {
       display: block;
       padding: 10px;
