@@ -16,8 +16,8 @@ import {HotDeploymentComponent} from "./hot-deployment/hot-deployment.component"
     <welcome *ngIf="status === 'KEYNOTE_BEGIN'"> </welcome>
     <vote *ngIf="status === 'VOTE_STATION' || status === 'VOTE_STATION_RESULT'"></vote>
     <hot-deployment *ngIf="status === 'HOT_DEPLOYMENT'"></hot-deployment>
+    <video-display *ngIf="status === 'VIDEO_DISPLAY'"></video-display>
     <obstacle></obstacle>
-    <video-display></video-display>
   `,
   providers: [],
   directives: [RailsComponent, WelcomeComponent, VoteComponent, ObstacleComponent, HotDeploymentComponent, VideoDisplayComponent],

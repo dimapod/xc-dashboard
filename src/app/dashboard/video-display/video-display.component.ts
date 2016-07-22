@@ -1,21 +1,20 @@
 import {Component} from "@angular/core";
 import {select} from "ng2-redux/lib/index";
 import {Observable} from "rxjs/Observable";
-import {RailsState} from "../../store/index";
-import {VideoDisplayActions} from "./video-display.actions";
+import {VideoDisplayState} from "../../store/index";
 import {VideoStreamer} from "./video-streamer.directive";
 
 @Component({
   selector: 'video-display',
-  template: `  <div class="video-display-popup" *ngIf="isDisplayed">
+  template: `  <div class="video-display-popup">
     <h2>Le train {{trainId}} entre en gare!</h2>
      <video video-streamer width="320" height="240">
       <source src="{{cameraUrl}}" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <button (click)="dismissVideo()" class="continue-button">Continuer</button>
+    <button (click)="hideVideo()" class="continue-button">Continuer</button>
   </div>`,
-  providers: [VideoDisplayActions],
+  providers: [],
   directives: [VideoStreamer],
   pipes: [],
   styles:  [require('./video-display.component.scss')]
@@ -26,32 +25,16 @@ export class VideoDisplayComponent {
   cameraUrl:string;
   isDisplayed:boolean;
 
-  static coveredPositions: Array<any> = [
-    {positionRef : 'pos_0_step_2', cameraUrl:'assets/screencast-git-2-3.mp4'}
-  ];
+  @select('videoDisplay') videoDisplay$: Observable<VideoDisplayState>;
 
-  @select('rails') rails$: Observable<RailsState>;
-
-  constructor( private videoDisplayActions:VideoDisplayActions) {
+  constructor() {
     this.isDisplayed=false;
   }
 
   ngOnInit() {
-    this.rails$.subscribe((data:RailsState) => {
-      var matchingPosition = VideoDisplayComponent.coveredPositions.filter((coveredPos) => {
-        return((data.trains[0].id!==this.trainId)&&(coveredPos.positionRef===data.trains[0].position)) ||
-          ((data.trains[1].id!==this.trainId)&&(coveredPos.positionRef===data.trains[1].position));
-      })[0];
-      if(!!matchingPosition){
-        this.trainId  = (data.trains[0].id===this.trainId)?data.trains[1].id: data.trains[0].id;
-        this.cameraUrl = matchingPosition.cameraUrl;
-        this.isDisplayed = true;
-      }
+    this.videoDisplay$.subscribe((data:VideoDisplayState) => {
+      this.trainId  = data.trainId;
+      this.cameraUrl = data.url;
     });
   }
-
-  dismissVideo(){
-    this.isDisplayed=false;
-  }
-
 }

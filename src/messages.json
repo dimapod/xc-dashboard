@@ -28,5 +28,9 @@
   {"name": "Switch 1 right", "color":"#fbcfcf", "message": {"type": "TOGGLE_SWITCH", "payload":{"switchId": 1, "direction": "right"}}},
   {"name": "Switch 1 left", "color":"#fbcfcf", "message": {"type": "TOGGLE_SWITCH", "payload":{"switchId": 1, "direction": "left"}}},
   {"name": "Switch 2 right", "color":"#fbcfcf", "message": {"type": "TOGGLE_SWITCH", "payload":{"switchId": 2, "direction": "right"}}},
-  {"name": "Switch 2 left", "color":"#fbcfcf", "message": {"type": "TOGGLE_SWITCH", "payload":{"switchId": 2, "direction": "left"}}}
+  {"name": "Switch 2 left", "color":"#fbcfcf", "message": {"type": "TOGGLE_SWITCH", "payload":{"switchId": 2, "direction": "left"}}},
+  {"name": "Display video", "color":"#fbcf00", "message": {"type": "KEYNOTE_STATE", "payload":{"value": "VIDEO_DISPLAY_SHOW"}}},
+  {"name": "Update video display for train 1", "color":"#fbcf00", "message": {"type": "UPDATE_VIDEO_DISPLAY", "payload":{"trainId": 1, "url":"assets/screencast-git-2-3.mp4"}}},
+  {"name": "Update video display for train 2", "color":"#fbcf00", "message": {"type": "UPDATE_VIDEO_DISPLAY", "payload":{"trainId": 2, "url":"assets/screencast-git-2-3.mp4"}}},
+  {"name": "Hide Video", "color":"#fbcf00", "message": {"type": "KEYNOTE_STATE", "payload":{"value": "VIDEO_DISPLAY_HIDE"}}}
 ]

@@ -16,6 +16,10 @@ export class KeynoteActions {
   static KEYNOTE_STATE_HOT_DEPLOYMENT_SHOW:string = 'HOT_DEPLOYMENT_SHOW';
   static KEYNOTE_STATE_HOT_DEPLOYMENT_HIDE:string = 'HOT_DEPLOYMENT_HIDE';
 
+  // Video display
+  static KEYNOTE_STATE_VIDEO_DISPLAY_SHOW:string = 'VIDEO_DISPLAY_SHOW';
+  static KEYNOTE_STATE_VIDEO_DISPLAY_HIDE:string = 'VIDEO_DISPLAY_HIDE';
+
   constructor(private ngRedux:NgRedux<RootState>) {
   }
 

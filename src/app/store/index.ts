@@ -5,11 +5,11 @@ export interface RootState {
   votes:VotesState;
   obstacle:ObstacleState;
   hotDeployment:HotDeploymentState;
-  train:TrainState;
+  videoDisplay:VideoDisplayState;
 }
 
 export interface KeynoteState {
-  status:string,
+  status:string
 }
 
 export class SwitchState {
@@ -51,6 +51,11 @@ export interface VotesThroughputState {
 export interface ObstacleState {
   obstacleType:string,
   isDisplayed:boolean,
+}
+
+export interface VideoDisplayState {
+  trainId:number,
+  url:string
 }
 
 export interface HotDeploymentState {

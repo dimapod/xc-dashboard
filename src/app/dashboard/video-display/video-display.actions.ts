@@ -7,11 +7,6 @@ export class VideoDisplayActions {
   constructor(private ngRedux:NgRedux<RootState>) {
   }
 
-  static VIDEO_DISPLAY:string = 'TRAIN_AT_RANGE';
-  static VIDEO_DISMISS:string = 'TRAIN_OUT_OF_RANGE';
+  static VIDEO_DISPLAY:string = 'UPDATE_VIDEO_DISPLAY';
 
-
-  dismissVideo():void {
-    this.ngRedux.dispatch({type: VideoDisplayActions.VIDEO_DISMISS});
-  }
 }

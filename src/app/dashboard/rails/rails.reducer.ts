@@ -7,7 +7,7 @@ const initialState:RailsState = {
     {switchId:2, direction:'right'}
   ],
   trains: [
-    {id:1, position:'pos_0_step_2'},
+    {id:1, position:'pos_1_step_1'},
     {id:2, position:'pos_2_step_1'}
   ]
 };

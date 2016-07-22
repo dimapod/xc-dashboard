@@ -31,6 +31,10 @@ export function handleState(state:any, action):any {
       return Object.assign({}, state, {status: 'HOT_DEPLOYMENT'});
     case KeynoteActions.KEYNOTE_STATE_HOT_DEPLOYMENT_HIDE:
       return Object.assign({}, state, {status: 'HOT_DEPLOYMENT_STOP'});
+    case KeynoteActions.KEYNOTE_STATE_VIDEO_DISPLAY_SHOW:
+      return Object.assign({}, state, {status: 'VIDEO_DISPLAY'});
+    case KeynoteActions.KEYNOTE_STATE_VIDEO_DISPLAY_HIDE:
+      return Object.assign({}, state, {status: 'VIDEO_DISPLAY_STOP'});
     default:
       return state;
   }
