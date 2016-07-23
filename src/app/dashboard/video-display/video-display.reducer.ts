@@ -3,7 +3,7 @@ import {VideoDisplayState} from "../../store/index";
 
 const initialState:VideoDisplayState = {
   trainId:1,
-  url: 'assets/screencast-git-2-3.mp4'
+  url: 'http://www.xebia.fr/images/header/logo-xebia.svg'
 };
 
 
