@@ -29,3 +29,11 @@
 ## Events
 
 [Events Exchange Schema](https://drive.google.com/open?id=0B7TxBU0Irvk9bUx0QWVET1hVeUk)
+
+## Streaming video
+* Find out the PI's ip address
+* In the message.json file, update the UPDATE_VIDEO_DISPLAY messages' contents with the PI's ip.
+* Installing the acquisition and streaming server tool on the PI is explained here : http://elinux.org/RPi-Cam-Web-Interface
+* one the installation is complete, go to the root directory of the tools' sources and run start.sh
+
+right now, the root directory on the test PI is ~/Documents/myProject/RPi-Cam-Web-Interface
