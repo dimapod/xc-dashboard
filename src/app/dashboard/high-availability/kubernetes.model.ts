@@ -1,3 +1,7 @@
+export class HighAvailabilityState {
+  nodes: Array<KubernetesNode>;
+}
+
 export class KubernetesNode {
   name:string;
   state:string;

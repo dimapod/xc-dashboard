@@ -34,6 +34,10 @@ export class KitchenSinkComponent implements OnInit {
   constructor() {
   }
 
+
+  // kubernetes
+  kubernetesEmptyData:Array<KubernetesNode> = [];
+
   // kubernetes
   kubernetesData:Array<KubernetesNode> = [
     {

@@ -8,10 +8,14 @@ import {KubernetesNodeComponent} from "./kubernetes-node.component";
   directives: [KubernetesNodeComponent],
   template: `
       <kubernetes-node *ngFor="let node of data" [data]="node"></kubernetes-node>
+      <h2 *ngIf="!data.length">No data</h2>
   `,
   styles: [`
     :host {
       display: inline-block;
+    }
+    h2 {
+      color: brown;
     }
   `]
 })

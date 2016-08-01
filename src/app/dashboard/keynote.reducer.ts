@@ -35,6 +35,10 @@ export function handleState(state:any, action):any {
       return Object.assign({}, state, {status: 'VIDEO_DISPLAY'});
     case KeynoteActions.KEYNOTE_STATE_VIDEO_DISPLAY_HIDE:
       return Object.assign({}, state, {status: 'VIDEO_DISPLAY_STOP'});
+    case KeynoteActions.KEYNOTE_STATE_HIGH_AVAILABILITY_SHOW:
+      return Object.assign({}, state, {status: 'HIGH_AVAILABILITY'});
+    case KeynoteActions.KEYNOTE_STATE_HIGH_AVAILABILITY_HIDE:
+      return Object.assign({}, state, {status: ''});
     default:
       return state;
   }

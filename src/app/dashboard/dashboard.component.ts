@@ -8,6 +8,7 @@ import {Observable} from "rxjs/Rx";
 import {KeynoteState} from "../store/index";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {HotDeploymentComponent} from "./hot-deployment/hot-deployment.component";
+import {HighAvailabilityComponent} from "./high-availability/high-availability.component";
 
 @Component({
   selector: 'dashboard',
@@ -17,10 +18,11 @@ import {HotDeploymentComponent} from "./hot-deployment/hot-deployment.component"
     <vote *ngIf="status === 'VOTE_STATION' || status === 'VOTE_STATION_RESULT'"></vote>
     <hot-deployment *ngIf="status === 'HOT_DEPLOYMENT'"></hot-deployment>
     <video-display *ngIf="status === 'VIDEO_DISPLAY'"></video-display>
+    <high-availability *ngIf="status === 'HIGH_AVAILABILITY'"></high-availability>
     <obstacle></obstacle>
   `,
   providers: [],
-  directives: [RailsComponent, WelcomeComponent, VoteComponent, ObstacleComponent, HotDeploymentComponent, VideoDisplayComponent],
+  directives: [RailsComponent, WelcomeComponent, VoteComponent, ObstacleComponent, HotDeploymentComponent, VideoDisplayComponent, HighAvailabilityComponent],
   pipes: [],
   encapsulation: ViewEncapsulation.None,
   styles: [``]

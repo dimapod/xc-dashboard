@@ -1,3 +1,5 @@
+import {HighAvailabilityState} from "../dashboard/high-availability";
+
 export interface RootState {
   keynoteState:KeynoteState;
   rails:RailsState;
@@ -6,6 +8,7 @@ export interface RootState {
   obstacle:ObstacleState;
   hotDeployment:HotDeploymentState;
   videoDisplay:VideoDisplayState;
+  highAvailability:HighAvailabilityState;
 }
 
 export interface KeynoteState {

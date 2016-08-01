@@ -20,6 +20,10 @@ export class KeynoteActions {
   static KEYNOTE_STATE_VIDEO_DISPLAY_SHOW:string = 'VIDEO_DISPLAY_SHOW';
   static KEYNOTE_STATE_VIDEO_DISPLAY_HIDE:string = 'VIDEO_DISPLAY_HIDE';
 
+  // High Availability
+  static KEYNOTE_STATE_HIGH_AVAILABILITY_SHOW:string = 'HIGH_AVAILABILITY_SHOW';
+  static KEYNOTE_STATE_HIGH_AVAILABILITY_HIDE:string = 'HIGH_AVAILABILITY_HIDE';
+
   constructor(private ngRedux:NgRedux<RootState>) {
   }
 
