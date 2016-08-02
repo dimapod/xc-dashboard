@@ -25,7 +25,28 @@ import {HighAvailabilityComponent} from "./high-availability/high-availability.c
   directives: [RailsComponent, WelcomeComponent, VoteComponent, ObstacleComponent, HotDeploymentComponent, VideoDisplayComponent, HighAvailabilityComponent],
   pipes: [],
   encapsulation: ViewEncapsulation.None,
-  styles: [``]
+  styles: [`
+    welcome {
+      text-align: center;
+      margin-top: 100px;
+      display: block;
+    }
+    vote {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+    }
+    hot-deployment {
+      text-align: center;
+      display: block;
+      margin-top: 20px;
+    }
+    high-availability {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+    }
+  `]
 })
 export class DashboardComponent {
   @select('keynoteState') keynoteState$:Observable<KeynoteState>;

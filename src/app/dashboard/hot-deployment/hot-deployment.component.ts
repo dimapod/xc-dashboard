@@ -12,13 +12,7 @@ import {ServiceDirective} from "./service.directive";
   template: require('./hot-deployment.html'),
   directives: [LampDirective, ServiceDirective],
   providers: [Logger, HotDeploymentService],
-  styles: [`
-    :host {
-      text-align: center;
-      display: block;
-      margin-top: 10px;
-    }
-  `]
+  styles: [``]
 })
 export class HotDeploymentComponent implements AfterViewInit {
 

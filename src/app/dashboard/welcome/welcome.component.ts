@@ -13,11 +13,6 @@ import {Component} from "@angular/core";
     span {
       color: blueviolet;
     }
-    :host {
-      text-align: center;
-      margin-top: 100px;
-      display: block;
-    }
   `]
 })
 export class WelcomeComponent {
