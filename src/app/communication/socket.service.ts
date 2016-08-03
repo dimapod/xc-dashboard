@@ -4,7 +4,6 @@ import {NgRedux} from "ng2-redux/lib/index";
 import {RootState} from "../store/index";
 import {Logger} from "angular2-logger/core";
 import Socket = SocketIOClient.Socket;
-import {Message} from "./message";
 
 @Injectable()
 export class SocketService {

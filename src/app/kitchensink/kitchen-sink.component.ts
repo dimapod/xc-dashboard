@@ -5,12 +5,14 @@ import {VoteCounterComponent} from "../dashboard/votes/vote-counter/vote-counter
 import {VoteThroughputComponent} from "../dashboard/votes/vote-throughput/vote-throughput.component";
 import {BarChartComponent} from "../shared/bar-chart/bar-chart.component";
 import {KubernetesNode, KubernetesNodeComponent, KubernetesComponent} from "../dashboard/high-availability";
+import {HotDeploymentComponent} from "../dashboard/hot-deployment/hot-deployment.component";
 import {VideoDisplayComponent} from "../dashboard/video-display/video-display.component";
 
 @Component({
   moduleId: module.id,
   selector: 'kitchen-sink',
-  directives: [WelcomeComponent, VoteCounterComponent, VoteThroughputComponent, BarChartComponent, KubernetesComponent, KubernetesNodeComponent, VideoDisplayComponent],
+  directives: [WelcomeComponent, VoteCounterComponent, VoteThroughputComponent, BarChartComponent,
+    KubernetesComponent, KubernetesNodeComponent, HotDeploymentComponent, VideoDisplayComponent],
   template: require('./kitchen-sink.component.html'),
   styles: [`
     h1.ks-label {

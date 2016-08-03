@@ -36,7 +36,7 @@ var queueConsumer = (conn) => {
 // Publish/subscribe Consumer
 var pubSubConsumer = (conn)=> {
   return conn.createChannel().then((ch)=>{
-    var ok = ch.assertExchange(exchangeName, 'fanout', {durable: false});
+    var ok = ch.assertExchange(exchangeName, 'fanout', {durable: true});
     ok = ok.then(()=> {
       return ch.assertQueue('', {exclusive: true});
     });
@@ -58,7 +58,7 @@ var pubSubConsumer = (conn)=> {
 var publishSubProducer = (data)=>{
   return open.then((conn)=>{
     conn.createChannel().then((ch)=> {
-      var ok = ch.assertExchange(exchangeName, 'fanout', {durable: false});
+      var ok = ch.assertExchange(exchangeName, 'fanout', {durable: true});
 
       return ok.then(()=>{
         ch.publish(exchangeName, '', new Buffer(data));

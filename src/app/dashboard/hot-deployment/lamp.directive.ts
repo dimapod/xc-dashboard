@@ -1,22 +1,20 @@
 import {Directive, Input, Renderer, ElementRef} from "@angular/core";
-/**
- * Created by ludovicladeu on 16/07/16.
- */
+import {HotDeploymentService} from "./hot-deployment.service";
 
 @Directive({
-  selector: 'ellipse'
+  selector: 'ellipse',
+  providers:[HotDeploymentService]
 })
 export class LampDirective {
 
   @Input()
   public id:string;
-  // @Input()
-  // private color:string;
 
-  constructor(public elementRef:ElementRef, public renderer:Renderer) {
+  constructor(public elementRef:ElementRef, public renderer:Renderer, public hotDeploymentService:HotDeploymentService) {
   }
 
-  changeColor(color:string){
-    this.renderer.setElementAttribute(this.elementRef.nativeElement, 'fill', color);
+  changeColor(color:number){
+    // this.renderer.setElementAttribute(this.elementRef.nativeElement, 'fill', this.hotDeploymentService.RGBToHex(color, 255, 255));
+    this.renderer.setElementAttribute(this.elementRef.nativeElement, 'fill', 'rgba(255, 0, 0,'+color+')');
   }
 }

@@ -4,20 +4,22 @@ import {Logger} from "angular2-logger/core";
 import {select, NgRedux} from "ng2-redux/lib/index";
 import {Observable} from "rxjs/Rx";
 import {LampState, RootState, ServiceState} from "../../store/index";
-import {HotDeploymentService} from "./hot-deployment.service";
 import {ServiceDirective} from "./service.directive";
 
 @Component({
   selector: 'hot-deployment',
   template: require('./hot-deployment.html'),
   directives: [LampDirective, ServiceDirective],
-  providers: [Logger, HotDeploymentService],
-  styles: [``]
+  providers: [Logger],
+  styles: [`
+    :host {
+      text-align: center;
+      display: block;
+      margin-top: 10px;
+    }
+  `]
 })
 export class HotDeploymentComponent implements AfterViewInit {
-
-  private versionV1:string = '#ffe6cc';
-  private versionV2:string = '#9ac7bf';
 
   @ViewChildren(LampDirective)
   private lamps:QueryList<LampDirective>;
@@ -31,7 +33,7 @@ export class HotDeploymentComponent implements AfterViewInit {
   @select(state => state.hotDeployment.services)
   services$:Observable<Array<ServiceState>>;
 
-  constructor(private ngRedux:NgRedux<RootState>, public hotDeploymentService:HotDeploymentService) {
+  constructor(private ngRedux:NgRedux<RootState>) {
   }
 
 
@@ -40,7 +42,7 @@ export class HotDeploymentComponent implements AfterViewInit {
       lamps.forEach(lamp => {
         const lampDirective = this.findLamp(lamp.id);
         if (lampDirective) {
-          lampDirective.changeColor(this.hotDeploymentService.RGBToHex(lamp.color, 0, 0));
+          lampDirective.changeColor(lamp.color);
         }
       });
     });
@@ -49,14 +51,7 @@ export class HotDeploymentComponent implements AfterViewInit {
       services.forEach(service => {
         const serviceDirective = this.findService(service.id);
         if (serviceDirective) {
-          if (service.status === 'START' && serviceDirective.interval === undefined) {
-            serviceDirective.interval = setInterval(() => serviceDirective.deployVersion(), 500);
-          }
-          else if (service.status === 'STOP' && serviceDirective.interval) {
-            clearInterval(serviceDirective.interval);
-            serviceDirective.interval = undefined;
-            serviceDirective.switchColor(service.version === 'V1' ? this.versionV1 : this.versionV2)
-          }
+          serviceDirective.handleStatus(service.status, service.version);
         }
       });
     });

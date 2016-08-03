@@ -3,13 +3,13 @@ import {HotDeploymentActions} from "./hot-deployment.actions";
 
 const initialState:HotDeploymentState = {
   lamps: [
-    {id: "01", color: 255},
-    {id: "02", color: 50},
-    {id: "03", color: 60},
-    {id: "04", color: 100},
+    {id: "01", color: 1},
+    {id: "02", color: 0.6},
+    {id: "03", color: 0.2},
+    {id: "04", color: 1},
     {id: "05", color: 0},
-    {id: "06", color: 200},
-    {id: "07", color: 150},
+    {id: "06", color: 0.2},
+    {id: "07", color: 0.8},
   ],
   services: [
     {id: 's1', version: 'V1', status: 'STOP'},
@@ -40,7 +40,7 @@ function switchLight(hotDeployment:HotDeploymentState, action):any {
     lamps: hotDeployment.lamps.map(item => {
       return item.id === action.payload.id ? {
         id: action.payload.id,
-        color: calculateColor(action.payload.value)
+        color: action.payload.value
       } : item;
     })
   });

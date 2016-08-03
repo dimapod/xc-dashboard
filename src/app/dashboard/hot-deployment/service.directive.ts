@@ -1,27 +1,60 @@
-import {Directive, Input, Renderer, ElementRef} from "@angular/core";
+import {Directive, Input, Renderer, ElementRef, ViewChild, ContentChild, AfterContentInit} from "@angular/core";
 
 @Directive({
-  selector: 'rect'
+  selector: 'g'
 })
-export class ServiceDirective {
+export class ServiceDirective implements AfterContentInit {
+
+  private versionV1:string = '#ffe6cc';
+  private versionV2:string = '#9ac7bf';
 
   @Input()
   public id:string;
 
-  public interval:any;
+  @ContentChild('service')
+  private service:ElementRef;
+
+  @ContentChild('version')
+  private version:ElementRef;
+
+  private interval:any;
+
+  // private version:string = 'V1';
 
   private tick:boolean;
 
+  constructor(public renderer:Renderer) {
+  }
 
-  constructor(public elementRef:ElementRef, public renderer:Renderer) {
+  ngAfterContentInit() {
+    if (this.service) {
+      const x:number = this.service.nativeElement.attributes.x.value;
+      const y:number = this.service.nativeElement.attributes.y.value;
+      const height:number = this.service.nativeElement.attributes.height.value;
+      this.renderer.setElementAttribute(this.version.nativeElement, 'x', +x + (height / 2));
+      this.renderer.setElementAttribute(this.version.nativeElement, 'y', +y + (height / 2) + 5);
+    }
   }
 
   deployVersion() {
-    this.renderer.setElementAttribute(this.elementRef.nativeElement, 'fill', this.tick ? '#ffffff' : '#000000');
+    this.renderer.setElementAttribute(this.service.nativeElement, 'fill', this.tick ? '#ffffff' : '#ee0300');
     this.tick = !this.tick;
   }
 
   switchColor(color:string) {
-    this.renderer.setElementAttribute(this.elementRef.nativeElement, 'fill', color);
+    this.renderer.setElementAttribute(this.service.nativeElement, 'fill', color);
+  }
+
+  handleStatus(status:string, version:string) {
+    // this.version = version;
+    this.renderer.setText(this.version.nativeElement, version);
+    if (status === 'START' && this.interval === undefined) {
+      this.interval = setInterval(() => this.deployVersion(), 500);
+    }
+    else if (status === 'STOP' && this.interval) {
+      clearInterval(this.interval);
+      this.interval = undefined;
+    }
+    this.switchColor(version === 'V1' ? this.versionV1 : this.versionV2);
   }
 }
