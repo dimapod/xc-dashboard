@@ -31,8 +31,8 @@ export class ServiceDirective implements AfterContentInit {
       const x:number = this.service.nativeElement.attributes.x.value;
       const y:number = this.service.nativeElement.attributes.y.value;
       const height:number = this.service.nativeElement.attributes.height.value;
-      this.renderer.setElementAttribute(this.version.nativeElement, 'x', +x + (height / 2));
-      this.renderer.setElementAttribute(this.version.nativeElement, 'y', +y + (height / 2) + 5);
+      this.renderer.setElementAttribute(this.version.nativeElement, 'x', (+x + (height / 2)).toString());
+      this.renderer.setElementAttribute(this.version.nativeElement, 'y', (+y + (height / 2) + 5).toString());
     }
   }
 
