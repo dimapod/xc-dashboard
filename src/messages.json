@@ -36,7 +36,7 @@
   {"name": "Switch 2 right", "color":"#fbcfcf", "message": {"type": "TOGGLE_SWITCH", "payload":{"switchId": 2, "direction": "right"}}},
   {"name": "Switch 2 left", "color":"#fbcfcf", "message": {"type": "TOGGLE_SWITCH", "payload":{"switchId": 2, "direction": "left"}}},
   {"name": "Display video", "color":"#fbcf00", "message": {"type": "KEYNOTE_STATE", "payload":{"value": "VIDEO_DISPLAY_SHOW"}}},
-  {"name": "Update video display for train 1", "color":"#fbcf00", "message": {"type": "UPDATE_VIDEO_DISPLAY", "payload":{"trainId": 1, "url":"http://192.168.1.13/html/cam_pic_new.php?pDelay=40000"}}},
+  {"name": "Update video display for train 1", "color":"#fbcf00", "message": {"type": "UPDATE_VIDEO_DISPLAY", "payload":{"trainId": 1, "url":"http://192.168.2.2/html/cam_pic_new.php?pDelay=40000"}}},
   {"name": "Update video display for train 2", "color":"#fbcf00", "message": {"type": "UPDATE_VIDEO_DISPLAY", "payload":{"trainId": 2, "url":"http://www.xebia.fr/images/header/logo-xebia.svg"}}},
   {"name": "Hide Video", "color":"#fbcf00", "message": {"type": "KEYNOTE_STATE", "payload":{"value": "VIDEO_DISPLAY_HIDE"}}}
 ]

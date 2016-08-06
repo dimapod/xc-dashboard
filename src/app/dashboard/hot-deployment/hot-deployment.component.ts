@@ -11,13 +11,7 @@ import {ServiceDirective} from "./service.directive";
   template: require('./hot-deployment.html'),
   directives: [LampDirective, ServiceDirective],
   providers: [Logger],
-  styles: [`
-    :host {
-      text-align: center;
-      display: block;
-      margin-top: 10px;
-    }
-  `]
+  styles: [``]
 })
 export class HotDeploymentComponent implements AfterViewInit {
 
@@ -61,7 +55,7 @@ export class HotDeploymentComponent implements AfterViewInit {
   private findLamp(id:string):LampDirective {
     return this.lamps.toArray().find(lamp => {
       if (lamp.id === id) {
-        return lamp;
+        return !!lamp;
       }
     });
   }
@@ -69,7 +63,7 @@ export class HotDeploymentComponent implements AfterViewInit {
   private findService(id:string):ServiceDirective {
     return this.services.toArray().find(service => {
       if (service.id === id) {
-        return service;
+        return !!service;
       }
     });
   }
