@@ -15,7 +15,7 @@ var consumerCallback = (msg)=> {
   if (msg !== null) {
     debug('receive from Rabbit : ', msg.content.toString());
     //ch.ack(msg);
-    socketIO.emit('dashboard', {content: msg.content.toString(), when: JSON.stringify(new Date())});
+    socketIO.emit('dashboard', {content: JSON.parse(msg.content.toString()), when: JSON.stringify(new Date())});
   }
 };
 

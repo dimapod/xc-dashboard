@@ -10,8 +10,15 @@ import highAvailability from "../dashboard/high-availability/high-availability.r
 import {RootState} from "../store";
 const {combineReducers} = Redux;
 
-const rootReducer = combineReducers<RootState>({
-  keynoteState, rails, chart, votes, obstacle, hotDeployment, videoDisplay,highAvailability
+const combinedReducer = combineReducers<RootState>({
+  keynoteState, rails, chart, votes, obstacle, hotDeployment, videoDisplay, highAvailability
 });
 
-export default rootReducer;
+export default (state:RootState, action:any):RootState => {
+  switch (action.type) {
+    case 'SET_STATE':
+      return Object.assign({}, state, action.payload);
+    default:
+      return combinedReducer(state, action);
+  }
+};

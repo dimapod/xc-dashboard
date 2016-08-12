@@ -16,7 +16,6 @@ export class SocketService {
   subscribe() {
     this.socket.on('dashboard', (msg) => {
       let message:any = msg.content;
-      console.log(message);
       if (message.type) {
         this.ngRedux.dispatch(message);
       } else {
