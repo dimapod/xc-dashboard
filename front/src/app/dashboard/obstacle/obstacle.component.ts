@@ -14,36 +14,36 @@ import {ObstacleActions} from "./obstacle.actions";
   providers: [ObstacleActions],
   directives: [],
   pipes: [],
-  styles:  [require('./obstacle.component.scss')]
+  styles: [require('./obstacle.component.scss')]
 })
 export class ObstacleComponent {
   name = 'obstacle display';
-  obstacleType:string;
-  obstacleLabel:string;
-  isDisplayed:boolean;
-  obstacleLabelMap:Object = {
-    COW:'Une vache',
-    PONEY:'Un poney',
-    UNICORN:'Une licorne',
-    UNKNOWN_OBSTACLE:'Quelque chose'
+  obstacleType: string;
+  obstacleLabel: string;
+  isDisplayed: boolean;
+  obstacleLabelMap: Object = {
+    COW: 'Une vache',
+    PONEY: 'Un poney',
+    UNICORN: 'Une licorne',
+    UNKNOWN_OBSTACLE: 'Quelque chose'
   };
 
-  @select('obstacle') obstacle$:Observable<ObstacleState>;
+  @select('obstacle') obstacle$: Observable<ObstacleState>;
 
-  constructor( private obstacleActions:ObstacleActions) {
-    this.isDisplayed=false;
+  constructor(private obstacleActions: ObstacleActions) {
+    this.isDisplayed = false;
   }
 
   ngOnInit() {
-    this.obstacle$.subscribe((data:ObstacleState) => {
-      this.obstacleType  = (this.obstacleLabelMap[data.obstacleType])?data.obstacleType:'UNKNOWN_OBSTACLE';
+    this.obstacle$.subscribe((data: ObstacleState) => {
+      this.obstacleType = (this.obstacleLabelMap[data.obstacleType]) ? data.obstacleType : 'UNKNOWN_OBSTACLE';
       this.obstacleLabel = this.obstacleLabelMap[this.obstacleType];
 
       this.isDisplayed = data.isDisplayed;
     });
   }
 
-  getAnimalIconClass(){
-    return 'my-'+this.obstacleType.toLowerCase();
+  getAnimalIconClass() {
+    return 'my-' + this.obstacleType.toLowerCase();
   }
 }

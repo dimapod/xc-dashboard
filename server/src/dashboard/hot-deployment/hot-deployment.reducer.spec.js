@@ -2,7 +2,7 @@ import {expect} from 'chai';
 import Immutable, {Map, List} from 'immutable';
 import reducer from './hot-deployment.reducer';
 
-describe.only('hot deployment reducer', () => {
+describe('hot deployment reducer', () => {
 
   const initialState = Immutable.fromJS({
     lamps: [

@@ -5,16 +5,17 @@ import {SwitchState} from "../../../store/index"
   selector: '[rails-switch]'
 })
 export class RailsSwitch {
-  @Input('rails-switch') switchId:number = undefined;
-  @Input('rails-switch-command') switchesCurrentPositions:Array<SwitchState> = undefined;
-  @Input('switch-direction') switchDirection:string = undefined;
+  @Input('rails-switch') switchId: number = undefined;
+  @Input('rails-switch-command') switchesCurrentPositions: Array<SwitchState> = undefined;
+  @Input('switch-direction') switchDirection: string = undefined;
 
-  constructor(private element:ElementRef, private renderer:Renderer) {}
+  constructor(private element: ElementRef, private renderer: Renderer) {
+  }
 
   ngOnChanges() {
-    var matchingSwitchPosition = this.switchesCurrentPositions.filter((switchPosition)=> switchPosition.switchId ===this.switchId)[0];
-    if(!!matchingSwitchPosition){
-      if (matchingSwitchPosition.direction===this.switchDirection) {
+    var matchingSwitchPosition = this.switchesCurrentPositions.filter((switchPosition)=> switchPosition.switchId === this.switchId)[0];
+    if (!!matchingSwitchPosition) {
+      if (matchingSwitchPosition.direction === this.switchDirection) {
         this.display();
       } else {
         this.hide();

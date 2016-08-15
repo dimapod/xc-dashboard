@@ -7,14 +7,12 @@ import {TrainDisplayService} from "./train-display.service";
   providers: [TrainDisplayService]
 })
 export class TrainDisplay {
-  @Input('train-display') trainId:number = undefined;
-  @Input('train-states') trainStates:Array<any> = undefined;
-  @Input('train-style') trainStyleId:string = undefined;
+  @Input('train-display') trainId: number = undefined;
+  @Input('train-states') trainStates: Array<any> = undefined;
+  @Input('train-style') trainStyleId: string = undefined;
 
 
-
-
-  constructor(private element:ElementRef, private renderer:Renderer, private trainDisplayService:TrainDisplayService) {
+  constructor(private element: ElementRef, private renderer: Renderer, private trainDisplayService: TrainDisplayService) {
   }
 
   ngOnChanges() {
@@ -26,9 +24,9 @@ export class TrainDisplay {
     this.refreshPosition();
   }
 
-  refreshPosition(){
-    var matchingState = this.trainStates.filter((train) => train.id===this.trainId)[0];
-    if(!!matchingState){
+  refreshPosition() {
+    var matchingState = this.trainStates.filter((train) => train.id === this.trainId)[0];
+    if (!!matchingState) {
       var targetPosition = matchingState.position;
       var translateDef = this.trainDisplayService.buildTransformFromPosition(targetPosition);
       this.renderer.setElementAttribute(this.element.nativeElement, 'transform', translateDef);
@@ -37,8 +35,7 @@ export class TrainDisplay {
   }
 
 
-
-  refreshStyle(){
+  refreshStyle() {
     var currentStyle = this.trainDisplayService.findStyleForTrain(this.trainStyleId);
     this.renderer.setElementAttribute(this.element.nativeElement, 'fill', currentStyle.fill);
     this.renderer.setElementAttribute(this.element.nativeElement, 'stroke', currentStyle.strokeColor);

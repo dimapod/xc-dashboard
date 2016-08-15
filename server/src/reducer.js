@@ -4,9 +4,10 @@ import highAvailability from './dashboard/high-availability/high-availability.re
 import obstacle from './dashboard/obstacle/obstacle.reducer';
 import votes from './dashboard/votes/votes.reducer';
 import hotDeployment from './dashboard/hot-deployment/hot-deployment.reducer';
+import rails from './dashboard/rails/rails.reducer';
 
 export default combineReducers({
-  keynoteState, highAvailability, obstacle, votes, hotDeployment
+  keynoteState, highAvailability, obstacle, votes, hotDeployment, rails
 });
 
 
