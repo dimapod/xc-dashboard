@@ -15,6 +15,7 @@
     "core-js": "^2.4.0",
     "debug": "~2.2.0",
     "immutable": "^3.8.1",
+    "immutablediff": "^0.4.3",
     "redux": "^3.5.2",
     "redux-immutable": "^3.0.6",
     "redux-node-logger": "0.0.3",

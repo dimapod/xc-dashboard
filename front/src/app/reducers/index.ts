@@ -18,6 +18,9 @@ export default (state:RootState, action:any):RootState => {
   switch (action.type) {
     case 'SET_STATE':
       return Object.assign({}, state, action.payload);
+    case 'UPDATE_STATE':
+      //implement merge state logic
+      return combinedReducer(state, action);
     default:
       return combinedReducer(state, action);
   }

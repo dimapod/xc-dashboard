@@ -39,16 +39,14 @@ export default (state = initialState, action) => {
 }
 
 function switchLight(state, action) {
-  const lamps = state.get('lamps');
-  return state.set('lamps', lamps.update(
-    lamps.findIndex((item) => item.get("id") === action.payload.id),
-                    (item) => item.set("color", action.payload.value)));
+  return state.updateIn(['lamps',
+      state.get('lamps').findIndex((item) => item.get("id") === action.payload.id)],
+                    (item) => item.set("color", action.payload.value));
 }
 
 function deployService(state, action) {
-  const services = state.get('services');
-  return state.set('services', services.update(
-    services.findIndex((item) => item.get("id") === action.payload.id),
-                        (item) => item.set("version", action.payload.version)
-                                      .set("status", action.type === SERVICE_DEPLOYMENT_START ? 'START' : 'STOP')));
+  return state.updateIn(['services',
+      state.get('services').findIndex((item) => item.get("id") === action.payload.id)],
+                    (item) => item.set("version", action.payload.version)
+                                  .set("status", action.type === SERVICE_DEPLOYMENT_START ? 'START' : 'STOP'));
 }
