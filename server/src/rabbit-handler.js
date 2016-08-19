@@ -23,7 +23,7 @@ const pubSubConsumer = (conn, store) => {
       .then(() => ch.assertQueue('', {exclusive: true}))
       .then(qok => ch.bindQueue(qok.queue, exchangeName, '').then(() => qok.queue))
       .then(queue => ch.consume(queue, msg => consumerCallback(msg, store)))
-      .then(() => debug('[*] Waiting for logs. To exit press CTRL+C'));
+      .then(() => debug('[*] Connected to Rabbit'));
   });
 };
 

@@ -3,9 +3,10 @@ import ImmutableDiff from 'immutablediff';
 
 //const debug = require('debug')('dashboard-backend:socket');
 
-export default function startServer(port, rabbitHandler, store) {
+export default (app, rabbitHandler, store) => {
 
-  const io = new Server().attach(port);
+  //const io = new Server().attach(port);
+  const io = Server.listen(app);
 
   let oldStore = undefined;
 
